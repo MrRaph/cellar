@@ -1,0 +1,8 @@
+*.pyc
+include/
+lib/
+bin/
+build/
+.Python
+pip-selfcheck.json
+db.sqlite3
