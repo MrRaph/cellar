@@ -20,17 +20,26 @@ class Wine(models.Model):
     liked_it = models.NullBooleanField(blank=True, null=True)
     notes = models.TextField(blank=True, default="")
 
+    def __unicode__(self):
+        return self.bottle_text
+
 
 class Grape(models.Model):
     wine = models.ForeignKey(Wine)
     name = models.CharField(max_length=50)
     percentage = models.IntegerField(default=100)
 
+    def __unicode__(self):
+        return "%s (%s%%)" % (self.name, self.percentage)
+
 
 class Winery(models.Model):
     name = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = "wineries"
