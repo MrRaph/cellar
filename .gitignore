@@ -2,6 +2,7 @@
 include/
 lib/
 bin/
+share/
 build/
 .Python
 pip-selfcheck.json
