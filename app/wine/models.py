@@ -21,7 +21,7 @@ class Wine(models.Model):
     notes = models.TextField(blank=True, default="")
 
     def __unicode__(self):
-        return self.bottle_text
+        return "%s (%s)" % (self.bottle_text, self.year)
 
 
 class Grape(models.Model):
