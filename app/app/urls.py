@@ -21,3 +21,5 @@ urlpatterns = [
 ]
 
 admin.site.site_header = "Cellar"
+admin.site.site_title = "Unbrain Cellar"
+admin.site.index_title = "Manage Your Wine"

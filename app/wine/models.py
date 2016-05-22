@@ -1,11 +1,23 @@
+# coding: utf-8
 from __future__ import unicode_literals
 
 from django.db import models
 
 
 class Wine(models.Model):
+    # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
+    WINE_TYPES = (
+        ("Red", "Red"),
+        ("White", "White"),
+        ("Rosé", "Rosé"),
+        ("Orange", "Orange"),
+        ("Sparkling", "Sparking"),
+        ("Fortified", "Fortified"),
+        ("Dessert", "Desert")
+    )
+
     bottle_text = models.CharField(max_length=100)
-    wine_type = models.CharField("Type", max_length=10) # Probably gonna make this a choices_list
+    wine_type = models.CharField("Type", max_length=10, choices=WINE_TYPES)
     year = models.IntegerField()
 
     date_purchased = models.DateField()
@@ -24,6 +36,15 @@ class Wine(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.bottle_text, self.year)
+
+    def in_cellar(self):
+        """ For the admin display. """
+        return not self.date_consumed
+    in_cellar.boolean = True
+    in_cellar.short_description = "In Cellar?"
+
+    class Meta:
+        ordering = ('-date_purchased',)
 
 
 class Grape(models.Model):

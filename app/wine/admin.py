@@ -4,10 +4,12 @@ from .models import Wine, Grape, Winery
 
 class GrapeInline(admin.TabularInline):
     model = Grape
+    extra = 0
 
 
 @admin.register(Wine)
 class WineAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "year", "in_cellar",]
     fieldsets = (
         ('Bottle', {
             'fields': ('bottle_text', 'year', 'wine_type', 'winery',),
