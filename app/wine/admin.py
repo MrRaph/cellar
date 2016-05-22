@@ -10,7 +10,7 @@ class GrapeInline(admin.TabularInline):
 class WineAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Bottle', {
-            'fields': ('bottle_text', 'year', 'winery',),
+            'fields': ('bottle_text', 'year', 'wine_type', 'winery',),
             }),
         ('Purchase', {
             'fields': ('date_purchased', 'store', 'importer'),

@@ -5,6 +5,7 @@ from django.db import models
 
 class Wine(models.Model):
     bottle_text = models.CharField(max_length=100)
+    wine_type = models.CharField("Type", max_length=10) # Probably gonna make this a choices_list
     year = models.IntegerField()
 
     date_purchased = models.DateField()
