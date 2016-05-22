@@ -3,6 +3,10 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+class WineQuerySet(models.QuerySet):
+    def in_cellar(self, arg=True):
+        return self.filter(date_consumed__isnull=arg)
+
 
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
@@ -42,6 +46,8 @@ class Wine(models.Model):
         return not self.date_consumed
     in_cellar.boolean = True
     in_cellar.short_description = "In Cellar?"
+
+    objects = WineQuerySet.as_manager()
 
     class Meta:
         ordering = ('-date_purchased',)
