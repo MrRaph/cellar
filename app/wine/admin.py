@@ -13,7 +13,7 @@ class WineAdmin(admin.ModelAdmin):
             'fields': ('bottle_text', 'year', 'wine_type', 'winery',),
             }),
         ('Purchase', {
-            'fields': ('date_purchased', 'store', 'importer'),
+            'fields': ('date_purchased', 'price', 'store', 'importer'),
             }),
         ('Consumption', {
             'fields': ('date_consumed', 'liked_it', 'notes',),

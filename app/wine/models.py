@@ -9,6 +9,8 @@ class Wine(models.Model):
     year = models.IntegerField()
 
     date_purchased = models.DateField()
+    price = models.DecimalField(decimal_places=2, max_digits=4, blank=True,
+                                null=True)
 
     # A few more of these could be foreign keys. Keeping the data model simple
     # but might change because of wine laziness.
