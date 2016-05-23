@@ -32,7 +32,7 @@ class WineAdminSite(admin.AdminSite):
 
         # Admin-site-wide views.
         urlpatterns = [
-            url(r'^list/$', wrap(self.index), name='index'),
+            url(r'^list/$', wrap(self.index), name='list'),
             url(r'^login/$', self.login, name='login'),
             url(r'^logout/$', wrap(self.logout), name='logout'),
             url(r'^password_change/$', wrap(self.password_change, cacheable=True), name='password_change'),
@@ -70,6 +70,15 @@ class WineAdminSite(admin.AdminSite):
 
         # Patch the wine models in.
         for model, model_admin in self._registry.items():
+            model_admin_urls = model_admin.urls
+
+            # The first URL in the model_admin list is the changelist view. We
+            # can grab it and change its name to pop in the admin. Since it
+            # gets pushed onto the list last, it will never be resolved but it
+            # will fix the "Home" links.
+            changelist_view = model_admin.urls[0]
+            changelist_view.name = "index"
+
             if model._meta.app_label != "wine":
                 continue
 
@@ -81,6 +90,7 @@ class WineAdminSite(admin.AdminSite):
 
             urlpatterns += [
                 url(urlre, include(model_admin.urls)),
+                changelist_view,
             ]
 
         return urlpatterns
