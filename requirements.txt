@@ -1,4 +1,7 @@
 Django
+djangorestframework
+
+# Heroku things.
 gunicorn
 dj-static
 dj-database-url
