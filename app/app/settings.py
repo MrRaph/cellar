@@ -30,7 +30,7 @@ DEBUG = True
 if os.environ.get('PROD', False):
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
