@@ -27,6 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '**DO NOT USE ME IN PRODUCTION**')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if os.environ.get('PROD', False):
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'wine',
 ]
 
