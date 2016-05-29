@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Wine, Grape, Winery
+from .models import Wine, Grape, Winery, Store
 
 class GrapeInline(admin.TabularInline):
     model = Grape
@@ -28,3 +28,4 @@ class WineAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Winery)
+admin.site.register(Store)

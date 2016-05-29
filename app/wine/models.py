@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from localflavor.us.models import USStateField
+
 
 class WineQuerySet(models.QuerySet):
     def in_cellar(self, arg=True):
@@ -30,7 +32,7 @@ class Wine(models.Model):
 
     # A few more of these could be foreign keys. Keeping the data model simple
     # but might change because of wine laziness.
-    store = models.CharField(max_length=50)
+    store = models.ForeignKey('Store', blank=True, null=True)
     winery = models.ForeignKey('Winery')
     importer = models.CharField(max_length=50)
 
@@ -57,7 +59,7 @@ class Wine(models.Model):
 class Grape(models.Model):
     wine = models.ForeignKey(Wine)
     name = models.CharField(max_length=50)
-    percentage = models.IntegerField(default=100)
+    percentage = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
         return "%s (%s%%)" % (self.name, self.percentage)
@@ -73,3 +75,9 @@ class Winery(models.Model):
 
     class Meta:
         verbose_name_plural = "wineries"
+
+
+class Store(models.Model):
+    name = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, blank=True, default="")
+    state = USStateField(blank=True)
