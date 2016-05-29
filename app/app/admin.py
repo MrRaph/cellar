@@ -70,6 +70,7 @@ class WineAdminSite(admin.AdminSite):
             ]
 
         # Patch the wine models in.
+        wine_urls = []
         for model, model_admin in self._registry.items():
             if model._meta.app_label != "wine":
                 continue
@@ -78,20 +79,27 @@ class WineAdminSite(admin.AdminSite):
 
             # Wines get top billing!
             if model._meta.model_name == "wine":
-                urlre = r'^'
-
-            urlpatterns += [
-                url(urlre, include(model_admin.urls)),
-            ]
-
-            if model._meta.model_name == "wine":
                 # The first URL in the model_admin list is the changelist view.
                 # We can grab it and change its name to pop in the admin. Since
                 # it gets pushed onto the list last, it will never be resolved
                 # but it will fix the "Home" links.
+                urlre = r'^'
                 changelist_view = model_admin.urls[0]
                 changelist_view.name = "index"
-                urlpatterns += [changelist_view]
+
+                wine_urls += [
+                    url(urlre, include(model_admin.urls)),
+                    changelist_view
+                ]
+            else:
+                urlpatterns += [
+                    url(urlre, include(model_admin.urls)),
+                ]
+
+        # We need to ensure wine is last so everything else gets resolved
+        # first.
+        if wine_urls:
+            urlpatterns += wine_urls
 
         return urlpatterns
 
