@@ -5,7 +5,7 @@ from django.db import models
 
 class WineQuerySet(models.QuerySet):
     def in_cellar(self, arg=True):
-        return self.filter(date_consumed__isnull=arg)
+        return self.filter(date_opened__isnull=arg)
 
 
 class Wine(models.Model):
@@ -44,7 +44,7 @@ class Wine(models.Model):
 
     def in_cellar(self):
         """ For the admin display. """
-        return not self.date_consumed
+        return not self.date_opened
     in_cellar.boolean = True
     in_cellar.short_description = "In Cellar?"
 
