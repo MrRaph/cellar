@@ -15,7 +15,7 @@ class Wine(models.Model):
         ("White", "White"),
         ("Rosé", "Rosé"),
         ("Orange", "Orange"),
-        ("Sparkling", "Sparking"),
+        ("Sparkling", "Sparkling"),
         ("Fortified", "Fortified"),
         ("Dessert", "Desert")
     )
