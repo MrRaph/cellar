@@ -81,3 +81,6 @@ class Store(models.Model):
     name = models.CharField(max_length=50)
     city = models.CharField(max_length=50, blank=True, default="")
     state = USStateField(blank=True)
+
+    def __unicode__(self):
+        return self.name
