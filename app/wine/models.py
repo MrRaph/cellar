@@ -34,7 +34,8 @@ class Wine(models.Model):
     winery = models.ForeignKey('Winery')
     importer = models.CharField(max_length=50)
 
-    date_consumed = models.DateField(blank=True, null=True)
+    date_opened = models.DateField(blank=True, null=True)
+    date_finished = models.DateField(blank=True, null=True)
     liked_it = models.NullBooleanField(blank=True, null=True)
     notes = models.TextField(blank=True, default="")
 
