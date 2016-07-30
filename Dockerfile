@@ -1,3 +1,3 @@
 FROM django:onbuild
 
-CMD "python app/manage.py runserver"
+#CMD "python app/manage.py runserver"
