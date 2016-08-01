@@ -8,3 +8,4 @@ build/
 pip-selfcheck.json
 db.sqlite3
 assets/
+docker-service_create.sh

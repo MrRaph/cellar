@@ -1,11 +1,43 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator, MinValueValidator
+import string
+
+from wine.models import Wine
 
 # Create your models here.
+
+class Cell(models.Model):
+    zone = models.ForeignKey('Zone')
+    # wine = models.ForeignKey('Wine')
+
+    row_number = models.IntegerField()
+    col_number = models.IntegerField()
+
+    def __str__(self):
+        d = dict(enumerate(string.ascii_lowercase, 1))
+        return d[self.col_number].upper() + str(self.row_number)
+
+    def save(self, *args, **kw):
+        zone = Zone.objects.all().filter(id=self.zone.id)
+        if not self.row_number in range(1,zone[0].num_rows) and not self.col_number in range(1,zone[0].num_columns):
+            print('Mauvaises valeurs ...')
+        else:
+            super(Cell, self).save(*args, **kw)
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)
     cellar = models.ForeignKey('Cellar')
+
+    num_columns = models.IntegerField(default=1)
+    num_rows = models.IntegerField(default=1)
+
+    actual_temperature = models.IntegerField(
+        default=15,
+        validators=[
+            MaxValueValidator(20),
+            MinValueValidator(5)
+        ])
 
     def __unicode__(self):
         return self.cellar.name + " (" + str(self.number) + ")"
@@ -13,9 +45,26 @@ class Zone(models.Model):
     def __str__(self):
         return self.cellar.name + " (" + str(self.number) + ")"
 
+    def total_space(self):
+        return self.num_columns * self.num_rows
+
 class Cellar(models.Model):
     name = models.CharField(max_length=100, default="My Cellar")
     brand = models.CharField(max_length=100, blank=True, null=True)
+
+    max_temperature = models.IntegerField(
+        default=15,
+        validators=[
+            MaxValueValidator(20),
+            MinValueValidator(5)
+        ])
+
+    min_temperature = models.IntegerField(
+        default=15,
+        validators=[
+            MaxValueValidator(20),
+            MinValueValidator(5)
+        ])
 
     date_purchased = models.DateField(blank=True, null=True)
 
@@ -24,3 +73,9 @@ class Cellar(models.Model):
 
     def __str__(self):
         return self.name
+
+    def total_space(self):
+        total_space = 0
+        for zone in Zone.objects.all().filter(cellar__id=self.id):
+            total_space += zone.total_space()
+        return total_space
