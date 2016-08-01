@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Wine, Grape, Winery, Store
+from django.utils.translation import gettext_lazy as _
 
 class GrapeInline(admin.TabularInline):
     model = Grape
@@ -11,13 +12,13 @@ class GrapeInline(admin.TabularInline):
 class WineAdmin(admin.ModelAdmin):
     list_display = ["__str__", "year", "wine_type", "in_cellar",]
     fieldsets = (
-        ('Bottle', {
+        (_('Bottle'), {
             'fields': ('bottle_text', 'year', 'wine_type', 'winery',),
             }),
-        ('Purchase', {
+        (_('Purchase'), {
             'fields': ('date_purchased', 'price', 'store', 'importer'),
             }),
-        ('Consumption', {
+        (_('Consumption'), {
             'fields': ('date_opened', 'date_finished', 'liked_it', 'notes',),
             })
     )

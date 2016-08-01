@@ -12,3 +12,18 @@ Starting small right now. The only interface is Django's admin because
 it does basically everything I need it to. I will probably put some sort
 of RESTful API or something up to interact with it from my phone but I'm
 not sure how that will work yet.
+
+# Install
+
+
+## On Fedora
+
+sudo dnf install postgresql-devel redhat-rpm-config python3-devel mariadb-devel
+mkvirtualenv cellar
+pip install -r requirements.txt
+
+
+./manage.py makemigrations
+./manage.py migrate
+./manage.py createsuperuser
+./manage.py runserver

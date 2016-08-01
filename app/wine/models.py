@@ -2,7 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from localflavor.us.models import USStateField
+# from localflavor.us.models import USStateField
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
+
 
 
 class WineQuerySet(models.QuerySet):
@@ -13,13 +16,13 @@ class WineQuerySet(models.QuerySet):
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
     WINE_TYPES = (
-        ("Red", "Red"),
-        ("White", "White"),
-        ("Rosé", "Rosé"),
-        ("Orange", "Orange"),
-        ("Sparkling", "Sparkling"),
-        ("Fortified", "Fortified"),
-        ("Dessert", "Desert")
+        (_("Red"), _("Red")),
+        (_("White"), _("White")),
+        (_("Rosé"), _("Rosé")),
+        (_("Orange"), _("Orange")),
+        (_("Sparkling"), _("Sparkling")),
+        (_("Fortified"), _("Fortified")),
+        (_("Dessert"), _("Dessert"))
     )
 
     bottle_text = models.CharField(max_length=100)
@@ -41,6 +44,9 @@ class Wine(models.Model):
     liked_it = models.NullBooleanField(blank=True, null=True)
     notes = models.TextField(blank=True, default="")
 
+    def __str__(self):
+        return self.bottle_text
+
     def __unicode__(self):
         return "%s (%s)" % (self.bottle_text, self.year)
 
@@ -48,7 +54,7 @@ class Wine(models.Model):
         """ For the admin display. """
         return not self.date_opened
     in_cellar.boolean = True
-    in_cellar.short_description = "In Cellar?"
+    in_cellar.short_description = _("In Cellar?")
 
     objects = WineQuerySet.as_manager()
 
@@ -61,6 +67,9 @@ class Grape(models.Model):
     name = models.CharField(max_length=50)
     percentage = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
     def __unicode__(self):
         return "%s (%s%%)" % (self.name, self.percentage)
 
@@ -70,17 +79,24 @@ class Winery(models.Model):
     country = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
     def __unicode__(self):
         return self.name
 
     class Meta:
-        verbose_name_plural = "wineries"
+        verbose_name_plural = _("wineries")
 
 
 class Store(models.Model):
     name = models.CharField(max_length=50)
     city = models.CharField(max_length=50, blank=True, default="")
-    state = USStateField(blank=True)
+    # state = USStateField(blank=True)
+    state = CountryField(blank=True)
+
+    def __str__(self):
+        return self.name + " (" + self.city + ")"
 
     def __unicode__(self):
         return self.name

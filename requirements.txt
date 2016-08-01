@@ -1,6 +1,11 @@
 Django
 djangorestframework
 django-localflavor
+django_extensions
+Werkzeug
+mysqlclient
+django-mysql
+django-countries
 
 # Heroku things.
 gunicorn
