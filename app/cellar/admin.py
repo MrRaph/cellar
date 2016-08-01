@@ -24,9 +24,9 @@ class ZoneAdmin(admin.ModelAdmin):
 
 @admin.register(Cell)
 class CellAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "zone", "row_number", "col_number", ]
+    list_display = ["__str__", "zone", "row_number", "col_number", "wine", ]
     fieldsets = (
         (_('Infos'), {
-            'fields': ('zone', 'row_number', 'col_number',),
+            'fields': ('zone', 'row_number', 'col_number', 'wine',),
             }),
     )

@@ -9,7 +9,7 @@ from wine.models import Wine
 
 class Cell(models.Model):
     zone = models.ForeignKey('Zone')
-    # wine = models.ForeignKey('Wine')
+    wine = models.ForeignKey('wine.Wine', null=True, blank=True)
 
     row_number = models.IntegerField()
     col_number = models.IntegerField()

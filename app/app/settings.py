@@ -90,11 +90,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
+         },
     }
 }
 
 if "DATABASE_URL" in os.environ and "test" not in sys.argv:
     DATABASES['default'] = dj_database_url.config()
+    DATABASE_OPTIONS = {"init_command": "SET foreign_key_checks = 0;"}
 
 
 # Password validation
