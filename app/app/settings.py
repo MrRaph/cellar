@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'wine',
+    'cellar',
     'django_countries',
     'app.admin.WineAdminAppConfig',
     'django.contrib.auth',

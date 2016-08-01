@@ -25,7 +25,7 @@ router.register(r'wine', WineViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
-    url(r'^', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 ]
 
 admin.site.site_header = "Cellar"

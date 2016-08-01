@@ -51,7 +51,7 @@ If you want to use SQLite, add the following line to the `docker service create`
 If you want to use MySQL, add the following line to the `docker service create` command :
 
 
-    --env DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME
+    --env DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME \
 
 
 Then, run the following commands after the service starts for the first time.
