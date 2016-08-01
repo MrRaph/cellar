@@ -12,17 +12,23 @@ class WineQuerySet(models.QuerySet):
     def in_cellar(self, arg=True):
         return self.filter(date_opened__isnull=arg)
 
+class Barcode(models.Model):
+    code            = models.CharField(max_length=13, unique = True)
+    date            = models.DateField(auto_now = True)
+
+    def __unicode__(self):
+        return self.code
 
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
     WINE_TYPES = (
-        (_("Red"), _("Red")),
-        (_("White"), _("White")),
-        (_("Rosé"), _("Rosé")),
-        (_("Orange"), _("Orange")),
-        (_("Sparkling"), _("Sparkling")),
-        (_("Fortified"), _("Fortified")),
-        (_("Dessert"), _("Dessert"))
+        ("Red", _("Red")),
+        ("White", _("White")),
+        ("Rosé", _("Rosé")),
+        ("Orange", _("Orange")),
+        ("Sparkling", _("Sparkling")),
+        ("Fortified", _("Fortified")),
+        ("Dessert", _("Dessert"))
     )
 
     bottle_text = models.CharField(max_length=100)
@@ -37,7 +43,8 @@ class Wine(models.Model):
     # but might change because of wine laziness.
     store = models.ForeignKey('Store', blank=True, null=True)
     winery = models.ForeignKey('Winery')
-    importer = models.CharField(max_length=50)
+    importer = models.CharField(blank=True, null=True, max_length=50)
+    barcode = models.ForeignKey('Barcode', blank=True, null=True)
 
     date_opened = models.DateField(blank=True, null=True)
     date_finished = models.DateField(blank=True, null=True)
@@ -76,7 +83,7 @@ class Grape(models.Model):
 
 class Winery(models.Model):
     name = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+    country = CountryField(blank=True)
     region = models.CharField(max_length=50)
 
     def __str__(self):

@@ -27,3 +27,35 @@ pip install -r requirements.txt
 ./manage.py migrate
 ./manage.py createsuperuser
 ./manage.py runserver
+
+
+## On Docker
+
+### Docker 1.12 with Services
+
+Here is the command I used to create my Service :
+
+    docker service create --name techan_wine \
+    --restart-condition any \
+    --network frontend \
+    --endpoint-mode dnsrr \
+    --update-delay 30s \
+    --replicas 2 \
+    mrraph/my-cellar
+
+
+If you want to use SQLite, add the following line to the `docker service create` command :
+
+    --mount type=bind,source=/data/cellar/db.sqlite3,target=/usr/src/app/app/db.sqlite3 \
+
+If you want to use MySQL, add the following line to the `docker service create` command :
+
+
+    --env DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME
+
+
+Then, run the following commands after the service starts for the first time.
+
+    docker exec -it techan_wine.2.4ex0w9hqaf8irjg1m4v3hjnqb ./manage.py makemigrations
+    docker exec -it techan_wine.2.4ex0w9hqaf8irjg1m4v3hjnqb ./manage.py migrate
+    docker exec -it techan_wine.2.4ex0w9hqaf8irjg1m4v3hjnqb ./manage.py createsuperuser
