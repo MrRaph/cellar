@@ -19,6 +19,16 @@ class Barcode(models.Model):
     def __unicode__(self):
         return self.code
 
+class Address(models.Model):
+    address_1 = models.CharField(_("address"), max_length=128, blank=True, null=True)
+    address_2 = models.CharField(_("address cont'd"), max_length=128, blank=True, null=True)
+    city = models.CharField(_("city"), max_length=64, blank=True, null=True)
+    zip_code = models.CharField(_("zip code"), max_length=5, blank=True, null=True)
+    state = CountryField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.code
+
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
     WINE_TYPES = (
@@ -83,8 +93,7 @@ class Grape(models.Model):
 
 class Winery(models.Model):
     name = models.CharField(max_length=50)
-    country = CountryField(blank=True)
-    region = models.CharField(max_length=50)
+    address = models.ForeignKey(Address, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -98,12 +107,10 @@ class Winery(models.Model):
 
 class Store(models.Model):
     name = models.CharField(max_length=50)
-    city = models.CharField(max_length=50, blank=True, default="")
-    # state = USStateField(blank=True)
-    state = CountryField(blank=True)
+    address = models.ForeignKey(Address, blank=True, null=True)
 
     def __str__(self):
-        return self.name + " (" + self.city + ")"
+        return self.name + " (" + self.address.city + ")"
 
     def __unicode__(self):
         return self.name
