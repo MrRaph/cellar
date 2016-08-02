@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="page-header">
+    <h1>{% trans "Your Zones" %}</h1>
+  </div>
+  {% if zones %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cellar</th>
+          <th>Number</th>
+          <th>Number Cells Columns x Rows</th>
+          <th>Actual temperature</th>
+          <th>Usage</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for zone in zones %}
+            <tr>
+              <td><a href="/cellar/cellars/{{ zone.cellar.id }}">{{ zone.cellar.name }}</a></td>
+              <td><a href="/cellar/zones/{{ zone.cellar.id }}">{{ zone.number }}</a></td>
+              <td>{{ zone.num_rows }} x {{ zone.num_columns }}</td>
+              <td>{{ zone.actual_temperature }}</td>
+              <td>{{ zone.get_used_space }} / {{ zone.total_space }}</td>
+              <td></td>
+              <td>
+                <a href="/cellar/zones/edit/{{ zone.id }}">Edit</a>
+            </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <strong>Haha !</strong> {% trans "You didn't have any zone yet." %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

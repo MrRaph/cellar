@@ -6,7 +6,7 @@
 
 <head>
     <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
-    <script src="{% static 'pyTimeTracking/js/jquery/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-1.11.3.min.js' %}"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -16,12 +16,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-    <script src="{% static 'pyTimeTracking/js/jquery-stopwatch/jquery.stopwatch.js' %}"></script>
-    <script src="{% static 'pyTimeTracking/js/jintervals/jintervals.js' %}"></script>
+    <script src="{% static 'js/jquery-stopwatch/jquery.stopwatch.js' %}"></script>
+    <script src="{% static 'js/jintervals/jintervals.js' %}"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'pyTimeTracking/ajustements.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ajustements.css' %}" />
 
-    <title>{% block title %}My Cellar{% endblock %}</title>
+    <title>{% block title %}{% trans "My Cellar" %}{% endblock %}</title>
 </head>
 
 <body>
@@ -32,31 +32,42 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{% trans "Toggle navigation" %}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Reporting Dashboard</a>
+          <a class="navbar-brand" href="/">{% trans "My Cellar" %}</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">{% trans "Home" %}</a></li>
             {% if user.is_authenticated %}
-              {% if user.is_superuser %}
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  {% trans "Billing" %} <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="/reporting/clients">{% trans "Customers" %}</a></li>
-                  <li><a href="/reporting/projets">{% trans "Projects" %}</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">{% trans "Billing" %}</li>
-                  <li><a href="/reporting/facturation">{% trans "Do Billing" %}</a></li>
-                </ul>
-              </li>
-              {% endif %}
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {% trans "My Wines" %} <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/reporting/clients">{% trans "Wines" %}</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">{% trans "Manage Wines" %}</li>
+                    <li><a href="/reporting/facturation">{% trans "Add Bottle" %}</a></li>
+                  </ul>
+                </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      {% trans "My Cellars" %} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/cellar/cellars">{% trans "Cellars" %}</a></li>
+                      <li><a href="/cellar/zones/">{% trans "Zones" %}</a></li>
+                      <li><a href="/cellar/cells">{% trans "Cells" %}</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">{% trans "Manage Cellars" %}</li>
+                      <li><a href="/cellar/cellars/add">{% trans "Add Cellar" %}</a></li>
+                      <li><a href="/cellar/zones/add">{% trans "Add Zone" %}</a></li>
+                      <li><a href="/cellar/cells/add">{% trans "Add Cell" %}</a></li>
+                    </ul>
+                </li>
               {% if user.is_superuser %}
                 <li><a href="/admin">{% trans "Admin Zone" %}</a></li>
               {% endif %}

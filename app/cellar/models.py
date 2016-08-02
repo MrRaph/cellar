@@ -31,15 +31,18 @@ class Cell(models.Model):
     col_number = models.IntegerField()
 
     def __str__(self):
+        return self.getName()
+
+    def getName(self):
         d = dict(enumerate(string.ascii_lowercase, 1))
         return d[self.col_number].upper() + str(self.row_number)
 
-    def save(self, *args, **kw):
-        zone = Zone.objects.all().filter(id=self.zone.id)
-        if not self.row_number in range(1,zone[0].num_rows) and not self.col_number in range(1,zone[0].num_columns):
-            print('Mauvaises valeurs ...')
-        else:
-            super(Cell, self).save(*args, **kw)
+    # def save(self, *args, **kw):
+    #     zone = Zone.objects.all().filter(id=self.zone.id)
+    #     if not self.row_number in range(1,zone[0].num_rows) and not self.col_number in range(1,zone[0].num_columns):
+    #         print('Mauvaises valeurs ...')
+    #     else:
+    #         super(Cell, self).save(*args, **kw)
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)
@@ -64,10 +67,23 @@ class Zone(models.Model):
     def total_space(self):
         return self.num_columns * self.num_rows
 
+    def get_used_space(self):
+        used_space = 0
+        for cell in Cell.objects.all().filter(zone__id=self.id):
+            used_space += 1
+        return used_space
+
+    def get_free_space(self):
+        used_space = 0
+        for cell in Cell.objects.all().filter(zone__id=self.id):
+            used_space += 1
+        return self.total_space() - used_space
+
 class Cellar(models.Model):
-    name = models.CharField(max_length=100, default="My Cellar")
+    name = models.CharField(max_length=100, default=_("My Cellar"))
     brand = models.CharField(max_length=100, blank=True, null=True)
     user = models.ForeignKey(User, default=get_current_user())
+    number_of_zones = models.IntegerField(default=1)
 
     max_temperature = models.IntegerField(
         default=15,
@@ -93,6 +109,30 @@ class Cellar(models.Model):
 
     def total_space(self):
         total_space = 0
-        for zone in Zone.objects.all().filter(cellar__id=self.id):
-            total_space += zone.total_space()
-        return total_space
+        zones = Zone.objects.all().filter(cellar__id=self.id)
+        if zones:
+            for zone in zones:
+                total_space += zone.total_space()
+            return total_space
+        else:
+            return 0
+
+    def total_free_space(self):
+        total_free_space = 0
+        zones = Zone.objects.all().filter(cellar__id=self.id)
+        if zones:
+            for zone in zones:
+                total_free_space += zone.get_free_space()
+            return total_free_space
+        else:
+            return 0
+
+    def total_used_space(self):
+        total_free_space = 0
+        zones = Zone.objects.all().filter(cellar__id=self.id)
+        if zones:
+            for zone in zones:
+                total_free_space += zone.get_free_space()
+            return total_free_space
+        else:
+            return 0

@@ -1,0 +1,43 @@
+.col-sm-4 {
+    width: 33.33333333%;
+}
+
+
+/** La PopUp **/
+div.top {
+  width: 100%;
+}
+
+div#requete {
+  float: left;
+  width: 50%;
+}
+
+div#tempsTotal{
+  float: left;
+  width: 50%;
+}
+
+div.stopFloat {
+  clear:both;
+}
+
+/** Le reste **/
+
+li a {
+    color: green;
+}
+body {
+    background: white;
+}
+
+table#liste_trajets tr:nth-child(even) {
+    background-color: #eee;
+}
+table#liste_trajets tr:nth-child(odd) {
+    background-color: #fff;
+}
+table#liste_trajets th {
+    color: white;
+    background-color: black;
+}

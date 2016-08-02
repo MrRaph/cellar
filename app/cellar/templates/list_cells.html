@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="page-header">
+    <h1>{% trans "Your Cells" %}</h1>
+  </div>
+  {% if cells %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cellar</th>
+          <th>Zone</th>
+          <th>Name</th>
+          <th>Wine</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cell in cells %}
+            <tr>
+              <td><a href="/cellar/cellars/{{ cell.zone.cellar.id }}">{{ cell.zone.cellar.name }}</a></td>
+              <td><a href="/cellar/zones/{{ cell.zone.id }}">{{ cell.zone.number }}</a></td>
+              <td><a href="/cellar/cells/{{ cell.id }}">{{ cell.getName }}</a></td>
+              <td>{{ zone.wine }}</td>
+              <td></td>
+              <td>
+                <a href="/cellar/cells/edit/{{ cell.id }}">Edit</a>
+            </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <strong>Haha !</strong> {% trans "You didn't have any cell yet." %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
