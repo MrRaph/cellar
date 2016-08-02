@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Time Tracking - {% trans "Log in" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <form class="form-signin" method="post" action=".">
+        {% csrf_token %}
+        <label for="inputEmail" class="sr-only">{% trans "Username" %}</label>
+        <input id="id_username" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-position: 98% 50%;" id="inputEmail" class="form-control" placeholder="{% trans 'Username' %}" required="" autofocus="" type="text" name="username">
+        <label for="inputPassword" class="sr-only">{% trans "Password" %}</label>
+        <input id="id_password" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-position: 98% 50%;" id="inputPassword" class="form-control" placeholder='{% trans "Password" %}' required="" type="password" name="password">
+        <div class="checkbox">
+          <label>
+            <input value="remember-me" type="checkbox"> {% trans "Se souvenir de moi" %}
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Log in" %}</button>
+      </form>
+
+      <!-- <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+      <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p> -->
+    </div>
+
+{% endblock %}

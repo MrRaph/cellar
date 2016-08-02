@@ -2,10 +2,26 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 import string
+from django.contrib.auth.models import User
+from django.conf import settings
 
 from wine.models import Wine
 
 # Create your models here.
+# class UserProfile(models.Model):
+#     field = models.CharField(max_length=3)
+#     user = models.OneToOneField(User)
+
+USER_ATTR_NAME = getattr(settings, 'LOCAL_USER_ATTR_NAME', '_current_user')
+try:
+    from threading import local
+except ImportError:
+    from django.utils._threading_local import local
+_thread_locals = local()
+
+def get_current_user():
+    current_user = getattr(_thread_locals, USER_ATTR_NAME, None)
+    return current_user() if current_user else current_user
 
 class Cell(models.Model):
     zone = models.ForeignKey('Zone')
@@ -51,6 +67,7 @@ class Zone(models.Model):
 class Cellar(models.Model):
     name = models.CharField(max_length=100, default="My Cellar")
     brand = models.CharField(max_length=100, blank=True, null=True)
+    user = models.OneToOneField(User, default=get_current_user())
 
     max_temperature = models.IntegerField(
         default=15,

@@ -17,18 +17,27 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
+from django.utils.translation import ugettext_lazy as _
 
 from wine.api import WineViewSet
+from cellar.api import CellarViewSet, ZoneViewSet, CellViewSet
 
 router = DefaultRouter()
 router.register(r'wine', WineViewSet)
+router.register(r'cellar', CellarViewSet)
+router.register(r'zone', ZoneViewSet)
+router.register(r'cell', CellViewSet)
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^api/', include(router.urls)),
+    url(r'^api/token/', obtain_auth_token, name='api-token'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
-admin.site.site_header = "Cellar"
-admin.site.site_title = "Cellar"
-admin.site.index_title = "Manage Your Wine"
+admin.site.site_header = _("Cellar")
+admin.site.site_title = _("Cellar")
+admin.site.index_title = _("Manage Your Wine")
 admin.site.site_url = None

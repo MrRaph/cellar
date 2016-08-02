@@ -4,6 +4,6 @@ from .serializers import WineSerializer
 from .models import Wine
 
 
-class WineViewSet(viewsets.ReadOnlyModelViewSet):
+class WineViewSet(viewsets.ModelViewSet):
     queryset = Wine.objects.all()
     serializer_class = WineSerializer

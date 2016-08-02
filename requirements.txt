@@ -6,6 +6,7 @@ Werkzeug
 mysqlclient
 django-mysql
 django-countries
+django-registration-redux
 
 # Heroku things.
 gunicorn
