@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'pyTimeTracking/ajustements.css' %}" />
 
-    <title>{% block title %}My Cellar{% endblock %}</title>
+    <title>{% block title %}{% trans "My Cellar" %}{% endblock %}</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Reporting Dashboard</a>
+          <a class="navbar-brand" href="/">{% trans "My Cellar" %}</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

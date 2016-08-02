@@ -65,7 +65,7 @@ class Zone(models.Model):
         return self.num_columns * self.num_rows
 
 class Cellar(models.Model):
-    name = models.CharField(max_length=100, default="My Cellar")
+    name = models.CharField(max_length=100, default=_("My Cellar"))
     brand = models.CharField(max_length=100, blank=True, null=True)
     user = models.ForeignKey(User, default=get_current_user())
 

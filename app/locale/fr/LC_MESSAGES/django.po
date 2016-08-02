@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-02 14:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: app/settings.py:132
+msgid "English"
+msgstr "Anglais"
+
+#: app/settings.py:133
+msgid "French"
+msgstr "Français"
+
+#: app/urls.py:40 app/urls.py:41
+msgid "Cellar"
+msgstr "Cave à vin"
+
+#: app/urls.py:42
+msgid "Manage Your Wine"
+msgstr "Gérer votre vin"
+
+#: cellar/admin.py:11 cellar/admin.py:28 cellar/admin.py:37
+msgid "Infos"
+msgstr ""
+
+#: cellar/models.py:68 wine/templates/base.html:24 wine/templates/base.html:40
+#: wine/templates/registration/login.html:4
+#: wine/templates/registration/logout.html:4
+#, fuzzy
+msgid "Cellar"
+msgstr "Cave à vin"
+
+#: wine/admin.py:15
+msgid "Bottle"
+msgstr "Bouteille"
+
+#: wine/admin.py:18
+msgid "Purchase"
+msgstr "Achat"
+
+#: wine/admin.py:21
+msgid "Consumption"
+msgstr "Consommation"
+
+#: wine/models.py:23
+msgid "address"
+msgstr "adresse"
+
+#: wine/models.py:24
+msgid "address cont'd"
+msgstr "adresse (suite)"
+
+#: wine/models.py:25
+msgid "city"
+msgstr "ville"
+
+#: wine/models.py:26
+msgid "zip code"
+msgstr "code postal"
+
+#: wine/models.py:35
+msgid "Red"
+msgstr "Rouge"
+
+#: wine/models.py:36
+msgid "White"
+msgstr "Blanc"
+
+#: wine/models.py:37
+msgid "Rosé"
+msgstr "Rosé"
+
+#: wine/models.py:38
+msgid "Orange"
+msgstr "Orange"
+
+#: wine/models.py:39
+msgid "Sparkling"
+msgstr "Gazeux"
+
+#: wine/models.py:40
+msgid "Fortified"
+msgstr "Fortifié"
+
+#: wine/models.py:41
+msgid "Dessert"
+msgstr "Dessert"
+
+#: wine/models.py:74
+msgid "In Cellar?"
+msgstr "Dans la cave ?"
+
+#: wine/models.py:105
+msgid "wineries"
+msgstr "domaines"
+
+#: wine/templates/base.html:44
+msgid "Home"
+msgstr "Accueil"
+
+#: wine/templates/base.html:49 wine/templates/base.html:55
+msgid "Billing"
+msgstr "Facturation"
+
+#: wine/templates/base.html:52
+msgid "Customers"
+msgstr "Clients"
+
+#: wine/templates/base.html:53
+msgid "Projects"
+msgstr "Projets"
+
+#: wine/templates/base.html:56
+msgid "Do Billing"
+msgstr ""
+
+#: wine/templates/base.html:61
+msgid "Admin Zone"
+msgstr "Zone Admin"
+
+#: wine/templates/base.html:63 wine/templates/registration/logout.html:4
+msgid "Log out"
+msgstr "Déconnexion"
+
+#: wine/templates/base.html:65 wine/templates/registration/login.html:4
+#: wine/templates/registration/login.html:19
+#: wine/templates/registration/password_reset_complete.html:8
+msgid "Log in"
+msgstr "Connexion"
+
+#: wine/templates/registration/activate.html:6
+msgid "Account activation failed"
+msgstr "Echec de l'activation du compte"
+
+#: wine/templates/registration/activation_complete.html:5
+msgid "Your account is now activated."
+msgstr "Votre compte est maintenant activé."
+
+#: wine/templates/registration/activation_email.txt:2
+msgid "Activate account at"
+msgstr "Activer le compte à"
+
+#: wine/templates/registration/activation_email.txt:6
+#, python-format
+msgid "Link is valid for %(expiration_days)s days."
+msgstr "Le lien est valide pendant %(expiration_days)s jours."
+
+#: wine/templates/registration/activation_email_subject.txt:1
+msgid "Account activation on"
+msgstr "Activation des comptes activée"
+
+#: wine/templates/registration/login.html:10
+#: wine/templates/registration/login.html:11
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: wine/templates/registration/login.html:12
+#: wine/templates/registration/login.html:13
+msgid "Password"
+msgstr "Mot de passe"
+
+#: wine/templates/registration/login.html:16
+msgid "Se souvenir de moi"
+msgstr ""
+
+#: wine/templates/registration/login.html:22
+msgid "Forgot password"
+msgstr "Mot de passe oublié"
+
+#: wine/templates/registration/login.html:22
+msgid "Reset it"
+msgstr "Réinitialiser"
+
+#: wine/templates/registration/login.html:23
+msgid "Not member"
+msgstr "Pas encore membre"
+
+#: wine/templates/registration/login.html:23
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: wine/templates/registration/logout.html:9
+msgid "Logged out"
+msgstr "Déconnecté"
+
+#: wine/templates/registration/logout.html:12
+msgid "Log in again"
+msgstr "Se connecter de nouveau"
+
+#: wine/templates/registration/password_change_done.html:5
+msgid "Password changed"
+msgstr "Mot de passe changé"
+
+#: wine/templates/registration/password_change_form.html:9
+#: wine/templates/registration/password_reset_confirm.html:12
+#: wine/templates/registration/password_reset_form.html:9
+#: wine/templates/registration/registration_form.html:9
+msgid "Submit"
+msgstr "Envoyer"
+
+#: wine/templates/registration/password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr "Mot de passe changé avec succès"
+
+#: wine/templates/registration/password_reset_confirm.html:17
+msgid "Password reset failed"
+msgstr "Echec de la réinitialisation du mot de passe"
+
+#: wine/templates/registration/password_reset_done.html:5
+msgid "Email with password reset instructions has been sent."
+msgstr "Un email avec les informations de réinitialisation a été envoyé"
+
+#: wine/templates/registration/password_reset_email.html:2
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr "Réinitialiser le passe de passe pour %(site_name)s"
+
+#: wine/templates/registration/registration_closed.html:5
+msgid "Registration is currently closed."
+msgstr "Les enregistrements sont actuellement fermés"
+
+#: wine/templates/registration/registration_complete.html:5
+msgid "You are now registered. Activation email sent."
+msgstr "Vous être maintenant enregistré. L'email d'activation a été envoyé"
+
+msgid "My Cellar"
+msgstr "Cave à vin"

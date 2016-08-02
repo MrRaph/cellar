@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Cellar',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default='My Cellar', max_length=100)),
+                ('name', models.CharField(default='{% trans "My Cellar" %}', max_length=100)),
                 ('brand', models.CharField(blank=True, max_length=100, null=True)),
                 ('date_purchased', models.DateField(blank=True, null=True)),
             ],
