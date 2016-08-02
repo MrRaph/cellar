@@ -37,12 +37,12 @@ class Cell(models.Model):
         d = dict(enumerate(string.ascii_lowercase, 1))
         return d[self.col_number].upper() + str(self.row_number)
 
-    def save(self, *args, **kw):
-        zone = Zone.objects.all().filter(id=self.zone.id)
-        if not self.row_number in range(1,zone[0].num_rows) and not self.col_number in range(1,zone[0].num_columns):
-            print('Mauvaises valeurs ...')
-        else:
-            super(Cell, self).save(*args, **kw)
+    # def save(self, *args, **kw):
+    #     zone = Zone.objects.all().filter(id=self.zone.id)
+    #     if not self.row_number in range(1,zone[0].num_rows) and not self.col_number in range(1,zone[0].num_columns):
+    #         print('Mauvaises valeurs ...')
+    #     else:
+    #         super(Cell, self).save(*args, **kw)
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)

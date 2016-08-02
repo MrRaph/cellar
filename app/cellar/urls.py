@@ -16,6 +16,10 @@ urlpatterns = [
     url(r'^cellars/(?P<id>[0-9]+)$', login_required(views.cellarDetail), name='CellarDetail'),
     url(r'^zones/(?P<id>[0-9]+)$', login_required(views.zoneDetail), name='ZoneDetail'),
     url(r'^cells/(?P<id>[0-9]+)$', login_required(views.cellDetail), name='CellDetail'),
+    # Add Views
+    url(r'^cellars/add/$', login_required(views.editCellar), name='editCellar'),
+    url(r'^zones/add/$', login_required(views.editZone), name='editZone'),
+    url(r'^cells/add/$', login_required(views.editCell), name='editCell'),
     # Edit Views
     url(r'^cellars/edit/(?P<id>[0-9]+)/$', login_required(views.editCellar), name='editCellar'),
     url(r'^zones/edit/(?P<id>[0-9]+)/$', login_required(views.editZone), name='editZone'),

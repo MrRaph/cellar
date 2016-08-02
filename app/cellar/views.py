@@ -45,8 +45,8 @@ def cellDetail(request, id):
 
 ## Edit Views
 
-def editCellar(request, id):
-    cellar = get_object_or_404(Cellar, id=id)
+def editCellar(request, id=None):
+    # cellar = get_object_or_404(Cellar, id=id)
 
     try:
         cellar = Cellar.objects.get(id=id)
@@ -58,11 +58,11 @@ def editCellar(request, id):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/cellars/' + form.id)
+        return HttpResponseRedirect('/cellar/cellars/' + str(form.id))
     return render(request, 'edit_cellar.html', {'form': form})
 
-def editZone(request, id):
-    zone = get_object_or_404(Zone, id=id)
+def editZone(request, id=None):
+    # zone = get_object_or_404(Zone, id=id)
 
     try:
         zone = Zone.objects.get(id=id)
@@ -74,11 +74,11 @@ def editZone(request, id):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/zones/' + form.id)
+        return HttpResponseRedirect('/cellar/zones/' + str(form.id))
     return render(request, 'edit_zone.html', {'form': form})
 
-def editCell(request, id):
-    cell = get_object_or_404(Cell, id=id)
+def editCell(request, id=None):
+    # cell = get_object_or_404(Cell, id=id)
 
     try:
         cell = Cell.objects.get(id=id)
@@ -91,5 +91,5 @@ def editCell(request, id):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/cells/' + form.id )
+        return HttpResponseRedirect('/cellar/cells/' + str(form.id) )
     return render(request, 'edit_cell.html', {'form': form})
