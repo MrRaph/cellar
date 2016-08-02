@@ -23,19 +23,22 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
-from wine.api import WineViewSet
-from cellar.api import CellarViewSet, ZoneViewSet, CellViewSet
+# from wine.api import WineViewSet
+# from cellar.api import CellarViewSet, ZoneViewSet, CellViewSet
+#
+# router = DefaultRouter()
+# router.register(r'wine', WineViewSet)
+# router.register(r'cellar', CellarViewSet)
+# router.register(r'zone', ZoneViewSet)
+# router.register(r'cell', CellViewSet)
 
-router = DefaultRouter()
-router.register(r'wine', WineViewSet)
-router.register(r'cellar', CellarViewSet)
-router.register(r'zone', ZoneViewSet)
-router.register(r'cell', CellViewSet)
+from cellar import views
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('registration.backends.simple.urls')),
+    url(r'^cellar/', include('cellar.urls', namespace='cellar'), name='cellar'),
     # url(r'^api/', include(router.urls)),
     # url(r'^api/token/', obtain_auth_token, name='api-token'),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))

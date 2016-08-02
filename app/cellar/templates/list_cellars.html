@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="page-header">
+    <h1>{% trans "Your Cellars" %}</h1>
+  </div>
+  {% if cellars %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Brand</th>
+          <th>Temp Interval</th>
+          <th>Zones</th>
+          <th>Usage</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cellar in cellars %}
+            <tr>
+              <td><a href="/cellar/cellars/{{ cellar.id }}">{{ cellar.name }}</a></td>
+              <td>{{ cellar.brand }}</td>
+              <td>{{ cellar.min_temperature }} - {{ cellar.max_temperature }}</td>
+              <td>{{ cellar.number_of_zones }}</td>
+              <td>{{ cellar.total_free_space }} / {{ cellar.total_space }}</td>
+              <td>
+                <a href="/cellar/cellars/edit/{{ cellar.id }}">Edit</a>
+            </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <strong>Haha !</strong> {% trans "You didn't have any cellar yet." %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

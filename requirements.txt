@@ -7,6 +7,7 @@ mysqlclient
 django-mysql
 django-countries
 django-registration-redux
+django-bootstrap-form
 
 # Heroku things.
 gunicorn
