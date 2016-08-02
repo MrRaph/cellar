@@ -6,12 +6,20 @@ from .models import Cellar, Zone, Cell
 
 @admin.register(Cellar)
 class CellarAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "date_purchased", 'total_space', ]
+    list_display = ["__str__", "date_purchased", 'total_space', 'user' ]
     fieldsets = (
         (_('Infos'), {
-            'fields': ('name', 'date_purchased', 'brand', 'max_temperature', 'min_temperature',),
+            'fields': (
+                'name', 'date_purchased', 'brand',
+                'max_temperature', 'min_temperature', 'user',
+            ),
             }),
     )
+
+    def save_model(self, request, obj, form, change):
+        if not obj.user:
+            obj.user = request.user
+        obj.save()
 
 @admin.register(Zone)
 class ZoneAdmin(admin.ModelAdmin):

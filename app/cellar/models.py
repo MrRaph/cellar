@@ -67,7 +67,7 @@ class Zone(models.Model):
 class Cellar(models.Model):
     name = models.CharField(max_length=100, default="My Cellar")
     brand = models.CharField(max_length=100, blank=True, null=True)
-    user = models.OneToOneField(User, default=get_current_user())
+    user = models.ForeignKey(User, default=get_current_user())
 
     max_temperature = models.IntegerField(
         default=15,
