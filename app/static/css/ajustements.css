@@ -1,0 +1,24 @@
+.col-sm-4 {
+    width: 50%;
+    float: left;
+}
+
+.panel-group .row {
+    width: 95%;
+    margin-left: 2.5%;
+    text-align: center;
+}
+
+.well {
+  font-size: 3em;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+div.stopFloat {
+  clear:both;
+}
+
+.cache {
+  display: none;
+}
