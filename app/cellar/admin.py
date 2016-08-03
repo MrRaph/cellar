@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
-from .models import Cellar, Zone, Cell
+from .models import Cellar, Zone, Cell, Bottle
 
 @admin.register(Cellar)
 class CellarAdmin(admin.ModelAdmin):
@@ -32,9 +32,20 @@ class ZoneAdmin(admin.ModelAdmin):
 
 @admin.register(Cell)
 class CellAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "zone", "row_number", "col_number", "wine", ]
+    # list_display = ["__str__", "zone", "row_number", "col_number", "wine", ]
+    list_display = ["__str__", "zone", "row_number", "col_number", ]
     fieldsets = (
         (_('Infos'), {
-            'fields': ('zone', 'row_number', 'col_number', 'wine',),
+            # 'fields': ('zone', 'row_number', 'col_number', 'wine',),
+            'fields': ('zone', 'row_number', 'col_number', ),
+            }),
+    )
+
+@admin.register(Bottle)
+class BottleAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "wine", "cell", "user", ]
+    fieldsets = (
+        (_('Infos'), {
+            'fields': ('wine', "cell", 'user',),
             }),
     )

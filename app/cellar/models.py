@@ -5,7 +5,7 @@ import string
 from django.contrib.auth.models import User
 from django.conf import settings
 
-from wine.models import Wine
+from wine.models import Wine, Barcode, Store
 
 # Create your models here.
 # class UserProfile(models.Model):
@@ -25,7 +25,7 @@ def get_current_user():
 
 class Cell(models.Model):
     zone = models.ForeignKey('Zone')
-    wine = models.ForeignKey('wine.Wine', null=True, blank=True)
+    # wine = models.ForeignKey(Bottle, null=True, blank=True)
 
     row_number = models.IntegerField()
     col_number = models.IntegerField()
@@ -43,6 +43,23 @@ class Cell(models.Model):
     #         print('Mauvaises valeurs ...')
     #     else:
     #         super(Cell, self).save(*args, **kw)
+
+class Bottle(models.Model):
+    user = models.ForeignKey(User, default=get_current_user())
+    wine = models.ForeignKey(Wine)
+    cell = models.ForeignKey(Cell, null=True, blank=True)
+
+    date_purchased = models.DateField()
+    price = models.DecimalField(decimal_places=2, max_digits=4, blank=True,
+                                null=True)
+    barcode = models.ForeignKey('wine.Barcode', blank=True, null=True)
+    store = models.ForeignKey('wine.Store', blank=True, null=True)
+    date_opened = models.DateField(blank=True, null=True)
+    date_finished = models.DateField(blank=True, null=True)
+    liked_it = models.NullBooleanField(blank=True, null=True)
+
+    def __str__(self):
+        return self.wine.bottle_text
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)

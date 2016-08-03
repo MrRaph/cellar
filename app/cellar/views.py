@@ -10,10 +10,11 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
+# from django.db.models import Q
 
 # Create your views here.
-from .models import Cellar, Zone, Cell
-from .forms import CellarForm, ZoneForm, CellForm
+from .models import Cellar, Zone, Cell, Bottle
+from .forms import CellarForm, ZoneForm, CellForm, BottleForm
 
 ## List Views
 
@@ -29,6 +30,9 @@ def myCells(request):
     cells = Cell.objects.all().filter(zone__cellar__user=request.user)
     return render(request, 'list_cells.html', {'cells': cells})
 
+def myBottles(request):
+    bottles = Bottle.objects.all().filter(cell__zone__cellar__user=request.user) | Bottle.objects.all().filter(user=request.user)
+    return render(request, 'list_bottles.html', {'bottles': bottles})
 ## Detail Views
 
 def cellarDetail(request, id):
@@ -43,6 +47,9 @@ def cellDetail(request, id):
     cells = Cell.objects.all().filter(zone__cellar__user=request.user, id=id)
     return render(request, 'list_cells.html', {'cells': cells})
 
+def bottleDetail(request, id):
+    bottles = Bottle.objects.all().filter(user=request.user, id=id)
+    return render(request, 'list_bottles.html', {'bottles': bottles})
 ## Edit Views
 
 def editCellar(request, id=None):
@@ -93,3 +100,19 @@ def editCell(request, id=None):
         form.save()
         return HttpResponseRedirect('/cellar/cells/' + str(form.id) )
     return render(request, 'edit_cell.html', {'form': form})
+
+def editBottle(request, id=None):
+    # cellar = get_object_or_404(Cellar, id=id)
+
+    try:
+        bottle = Bottle.objects.get(id=id)
+    except:
+        bottle = None
+
+    form = BottleForm(request.POST or None, instance=bottle)
+    if form.is_valid():
+        form = form.save(commit=False)
+        form.user = request.user
+        form.save()
+        return HttpResponseRedirect('/cellar/bottle/' + str(form.id))
+    return render(request, 'edit_bottle.html', {'form': form})
