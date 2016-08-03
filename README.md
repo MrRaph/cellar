@@ -20,15 +20,18 @@ _This project is under heavy development !_
 
 ## On Fedora
 
-sudo dnf install postgresql-devel redhat-rpm-config python3-devel mariadb-devel
-mkvirtualenv cellar
-pip install -r requirements.txt
+Install requiered OS packages :
 
+    sudo dnf install postgresql-devel redhat-rpm-config python3-devel mariadb-devel
+    mkvirtualenv cellar
+    pip install -r requirements.txt
 
-./manage.py makemigrations
-./manage.py migrate
-./manage.py createsuperuser
-./manage.py runserver
+Run usual Django tasks :
+
+    ./manage.py makemigrations
+    ./manage.py migrate
+    ./manage.py createsuperuser
+    ./manage.py runserver
 
 
 ## On Docker
