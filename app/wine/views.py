@@ -1,3 +1,79 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.template import loader
+from django.core.urlresolvers import reverse
+from django.views import generic
+from django.utils import timezone
+from django.contrib.auth import authenticate, login
+from datetime import timedelta
+import datetime
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
+
 
 # Create your views here.
+from .models import Wine, Store, Barcode, Address, Grape, Winery
+from .forms import WineForm, StoreForm, BarcodeForm, AddressForm, AddressForm, GrapeForm, WineryForm
+
+## List Views
+
+def allWines(request):
+    wines = Wine.objects.all()
+    return render(request, 'list_wines.html', {'wines': wines})
+
+def allWineries(request):
+    wineries = Winery.objects.all()
+    return render(request, 'list_wineries.html', {'wineries': wineries})
+
+## Detail Views
+
+def wineDetail(request, id):
+    wines = Wine.objects.all().filter(id=id)
+    return render(request, 'list_wines.html', {'wines': wines})
+
+def wineryDetail(request, id):
+    wineries = Winery.objects.all().filter(id=id)
+    return render(request, 'list_wineries.html', {'wineries': wineries})
+
+## Edit Views
+
+def editWine(request, id=None):
+    # cellar = get_object_or_404(Cellar, id=id)
+
+    try:
+        wine = Wine.objects.get(id=id)
+    except:
+        wine = None
+
+    # winery = Winery.objects.all()
+    # WineFormSet = inlineformset_factory(Wine, Winery, )
+
+    form = WineForm(request.POST or None, instance=wine)
+    # form = WineFormSet(request.POST or None, instance=wine,)
+    if form.is_valid():
+        form = form.save(commit=False)
+        form.save()
+        return HttpResponseRedirect('/wine/wines/' + str(form.id))
+    return render(request, 'edit_wine.html', {'form': form})
+
+
+def editWinery(request, id=None):
+    # cellar = get_object_or_404(Cellar, id=id)
+
+    try:
+        winery = Winery.objects.get(id=id)
+    except:
+        winery = None
+
+    # winery = Winery.objects.all()
+    # WineFormSet = inlineformset_factory(Winery, Wine, fields=('winery', ))
+
+    form = WineryForm(request.POST or None, instance=winery)
+    # form = WineFormSet(request.POST or None, instance=winery,)
+    if form.is_valid():
+        form = form.save(commit=False)
+        form.save()
+        return HttpResponseRedirect('/wine/wineries/edit/' + str(form.id))
+    return render(request, 'edit_winery.html', {'form': form})

@@ -29,6 +29,9 @@ class Address(models.Model):
     def __unicode__(self):
         return self.code
 
+    def __str__(self):
+        return address_1 + "\n" + address_2 + "\n" + city + "\n" + zip_code + "\n" + state
+
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
     WINE_TYPES = (
@@ -43,7 +46,7 @@ class Wine(models.Model):
 
     bottle_text = models.CharField(max_length=100)
     wine_type = models.CharField("Type", max_length=10, choices=WINE_TYPES)
-    year = models.IntegerField()
+    # year = models.IntegerField()
 
     # A few more of these could be foreign keys. Keeping the data model simple
     # but might change because of wine laziness.

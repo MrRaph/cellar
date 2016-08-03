@@ -50,6 +50,7 @@ def cellDetail(request, id):
 def bottleDetail(request, id):
     bottles = Bottle.objects.all().filter(user=request.user, id=id)
     return render(request, 'list_bottles.html', {'bottles': bottles})
+
 ## Edit Views
 
 def editCellar(request, id=None):
@@ -114,5 +115,5 @@ def editBottle(request, id=None):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/bottle/' + str(form.id))
+        return HttpResponseRedirect('/cellar/bottles/' + str(form.id))
     return render(request, 'edit_bottle.html', {'form': form})

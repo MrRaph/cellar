@@ -11,10 +11,11 @@ class GrapeInline(admin.TabularInline):
 @admin.register(Wine)
 class WineAdmin(admin.ModelAdmin):
     # list_display = ["__str__", "year", "wine_type", "in_cellar",]
-    list_display = ["__str__", "year", "wine_type", ]
+    # list_display = ["__str__", "year", "wine_type", ]
+    list_display = ["__str__", "wine_type", ]
     fieldsets = (
         (_('Bottle'), {
-            'fields': ('bottle_text', 'year', 'wine_type', 'winery',),
+            'fields': ('bottle_text', 'wine_type', 'winery',),
             }),
         # (_('Purchase'), {
         #     'fields': ('date_purchased', 'price', 'store', 'importer'),

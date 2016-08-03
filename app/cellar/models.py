@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 import string
 from django.contrib.auth.models import User
 from django.conf import settings
+from datetime import date
 
 from wine.models import Wine, Barcode, Store
 
@@ -49,7 +50,9 @@ class Bottle(models.Model):
     wine = models.ForeignKey(Wine)
     cell = models.ForeignKey(Cell, null=True, blank=True)
 
-    date_purchased = models.DateField()
+    year = models.IntegerField(default=date.today().year)
+
+    date_purchased = models.DateField(auto_now = True)
     price = models.DecimalField(decimal_places=2, max_digits=4, blank=True,
                                 null=True)
     barcode = models.ForeignKey('wine.Barcode', blank=True, null=True)
@@ -86,7 +89,7 @@ class Zone(models.Model):
 
     def get_used_space(self):
         used_space = 0
-        for cell in Cell.objects.all().filter(zone__id=self.id):
+        for bottle in Bottle.objects.all().filter(cell__zone__id=self.id):
             used_space += 1
         return used_space
 
@@ -149,7 +152,13 @@ class Cellar(models.Model):
         zones = Zone.objects.all().filter(cellar__id=self.id)
         if zones:
             for zone in zones:
-                total_free_space += zone.get_free_space()
+                total_free_space += zone.get_used_space()
             return total_free_space
         else:
             return 0
+
+    def get_percent_used(self):
+        if self.total_used_space() == 0:
+            return 0
+        else:
+            return int((int(self.total_used_space()) * 100) / int(self.total_space()))
