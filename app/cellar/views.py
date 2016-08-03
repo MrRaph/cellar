@@ -66,7 +66,7 @@ def editCellar(request, id=None):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/cellars/' + str(form.id))
+        return HttpResponseRedirect('/cellar/cellars/')
     return render(request, 'edit_cellar.html', {'form': form})
 
 def editZone(request, id=None):
@@ -82,7 +82,7 @@ def editZone(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/zones/' + str(form.id))
+        return HttpResponseRedirect('/cellar/zones/')
     return render(request, 'edit_zone.html', {'form': form})
 
 def editCell(request, id=None):
@@ -99,7 +99,7 @@ def editCell(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/cells/' + str(form.id) )
+        return HttpResponseRedirect('/cellar/cells/')
     return render(request, 'edit_cell.html', {'form': form})
 
 def editBottle(request, id=None):
@@ -115,5 +115,5 @@ def editBottle(request, id=None):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/bottles/' + str(form.id))
+        return HttpResponseRedirect('/cellar/bottles/')
     return render(request, 'edit_bottle.html', {'form': form})

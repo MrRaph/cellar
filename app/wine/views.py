@@ -55,7 +55,7 @@ def editWine(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/wine/wines/' + str(form.id))
+        return HttpResponseRedirect('/wine/wines/')
     return render(request, 'edit_wine.html', {'form': form})
 
 
@@ -75,5 +75,5 @@ def editWinery(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/wine/wineries/edit/' + str(form.id))
+        return HttpResponseRedirect('/wine/wineries/')
     return render(request, 'edit_winery.html', {'form': form})
