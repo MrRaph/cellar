@@ -20,6 +20,7 @@
     <script src="{% static 'js/jintervals/jintervals.js' %}"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/ajustements.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}" />
 
     <title>{% block title %}{% trans "My Cellar" %}{% endblock %}</title>
 </head>
@@ -47,10 +48,10 @@
                     {% trans "My Wines" %} <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="/reporting/clients">{% trans "Wines" %}</a></li>
+                    <li><a href="/cellar/bottles">{% trans "My Bottles" %}</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">{% trans "Manage Wines" %}</li>
-                    <li><a href="/reporting/facturation">{% trans "Add Bottle" %}</a></li>
+                    <li><a href="/cellar/bottles/add">{% trans "Add Bottle" %}</a></li>
                   </ul>
                 </li>
                   <li class="dropdown">
@@ -66,6 +67,21 @@
                       <li><a href="/cellar/cellars/add">{% trans "Add Cellar" %}</a></li>
                       <li><a href="/cellar/zones/add">{% trans "Add Zone" %}</a></li>
                       <li><a href="/cellar/cells/add">{% trans "Add Cell" %}</a></li>
+                    </ul>
+                </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      {% trans "Wine Database" %} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/wine/wines">{% trans "Wines" %}</a></li>
+                      <li><a href="/wine/wineries/">{% trans "Wineries" %}</a></li>
+                      <li><a href="/wine/stores/">{% trans "Stores" %}</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">{% trans "Manage Wines" %}</li>
+                      <li><a href="/wine/wines/add">{% trans "Add Wine" %}</a></li>
+                      <li><a href="/wine/wineries/add">{% trans "Add Wineries" %}</a></li>
+                      <li><a href="/wine/stores/add">{% trans "Add Store" %}</a></li>
                     </ul>
                 </li>
               {% if user.is_superuser %}

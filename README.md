@@ -13,6 +13,8 @@ it does basically everything I need it to. I will probably put some sort
 of RESTful API or something up to interact with it from my phone but I'm
 not sure how that will work yet.
 
+_This project is under heavy development !_
+
 # Install
 
 

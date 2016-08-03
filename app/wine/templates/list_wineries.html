@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="page-header">
+    <h1>{% trans "Wineries Database" %}</h1>
+  </div>
+  {% if wineries %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>{% trans "Name" %}</th>
+          <th>{% trans "Address" %}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for winery in wineries %}
+            <tr>
+              <td>{{ winery.name }}</td>
+              <td>{{ winery.address }}</td>
+              <td>
+                <a href="/wine/wineries/edit/{{ winery.id }}">Edit</a>
+            </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <strong>Haha !</strong> {% trans "There isn't any wine yet ..." %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

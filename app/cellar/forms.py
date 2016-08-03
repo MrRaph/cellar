@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from .models import Cellar, Zone, Cell
+from .models import Cellar, Zone, Cell, Bottle
 
 class CellarForm(forms.ModelForm):
     class Meta:
@@ -16,4 +16,10 @@ class ZoneForm(forms.ModelForm):
 class CellForm(forms.ModelForm):
     class Meta:
         model = Cell
-        fields = ['zone', 'wine', 'row_number', 'col_number', ]
+        # fields = ['zone', 'wine', 'row_number', 'col_number', ]
+        fields = ['zone', 'row_number', 'col_number', ]
+
+class BottleForm(forms.ModelForm):
+    class Meta:
+        model = Bottle
+        fields = ['wine', 'cell', ]

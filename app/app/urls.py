@@ -33,12 +33,16 @@ from django.views.generic import TemplateView
 # router.register(r'cell', CellViewSet)
 
 from cellar import views
+from wine import views
+from . import views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
+    # url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
+    url(r'^$', views.index, name='BottleList'),
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('registration.backends.simple.urls')),
     url(r'^cellar/', include('cellar.urls', namespace='cellar'), name='cellar'),
+    url(r'^wine/', include('wine.urls', namespace='wine'), name='wine'),
     # url(r'^api/', include(router.urls)),
     # url(r'^api/token/', obtain_auth_token, name='api-token'),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
