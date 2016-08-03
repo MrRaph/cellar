@@ -33,6 +33,7 @@ def myCells(request):
 def myBottles(request):
     bottles = Bottle.objects.all().filter(cell__zone__cellar__user=request.user) | Bottle.objects.all().filter(user=request.user)
     return render(request, 'list_bottles.html', {'bottles': bottles})
+    
 ## Detail Views
 
 def cellarDetail(request, id):
@@ -50,6 +51,29 @@ def cellDetail(request, id):
 def bottleDetail(request, id):
     bottles = Bottle.objects.all().filter(user=request.user, id=id)
     return render(request, 'list_bottles.html', {'bottles': bottles})
+
+## Delete Views
+
+def cellarDelete(request, id):
+    cellars = Cellar.objects.all().filter(user=request.user, id=id).delete()
+    # return render(request, 'list_cellars.html', {'cellars': cellars})
+    return myCellars(request)
+
+def zoneDelete(request, id):
+    zones = Zone.objects.all().filter(cellar__user=request.user, id=id).delete()
+    # return render(request, 'list_zones.html', {'zones': zones})
+    return myZones(request)
+
+def cellDelete(request, id):
+    cells = Cell.objects.all().filter(zone__cellar__user=request.user, id=id).delete()
+    # return render(request, 'list_cells.html', {'cells': cells})
+    return myCells(request)
+
+def bottleDelete(request, id):
+    bottles = Bottle.objects.all().filter(user=request.user, id=id).delete()
+    # return render(request, 'list_bottles.html', {'bottles': bottles})
+    return myBottles(request)
+
 
 ## Edit Views
 
