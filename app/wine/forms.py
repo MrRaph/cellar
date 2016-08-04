@@ -32,4 +32,4 @@ class GrapeForm(forms.ModelForm):
 class WineryForm(forms.ModelForm):
     class Meta:
         model = Winery
-        fields = ['name', 'address', ]
+        exclude =('address',)

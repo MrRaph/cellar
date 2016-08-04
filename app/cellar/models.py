@@ -63,7 +63,7 @@ class Bottle(models.Model):
     liked_it = models.NullBooleanField(blank=True, null=True)
 
     def __str__(self):
-        return self.wine.bottle_text
+        return _("Bottle of ") + str(self.wine.bottle_text)
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)

@@ -30,7 +30,7 @@ class Address(models.Model):
         return self.code
 
     def __str__(self):
-        return address_1 + "\n" + address_2 + "\n" + city + "\n" + zip_code + "\n" + state
+        return str(self.address_1) + "\n" + str(self.address_2) + "\n" + str(self.city) + "\n" + str(self.zip_code) + "\n" + str(self.state)
 
 class Wine(models.Model):
     # Adapted from: https://en.wikipedia.org/wiki/Outline_of_wine#Types_of_wine
@@ -90,6 +90,7 @@ class Grape(models.Model):
 class Winery(models.Model):
     name = models.CharField(max_length=50)
     address = models.ForeignKey(Address, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name
