@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-02 14:32+0200\n"
+"POT-Creation-Date: 2016-08-03 19:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,221 +17,398 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/settings.py:132
+#: app/app/settings.py:134
 msgid "English"
 msgstr ""
 
-#: app/settings.py:133
+#: app/app/settings.py:135
 msgid "French"
 msgstr "Français"
 
-#: app/urls.py:40 app/urls.py:41
+#: app/app/urls.py:51 app/app/urls.py:52
 msgid "Cellar"
 msgstr ""
 
-#: app/urls.py:42
+#: app/app/urls.py:53
 msgid "Manage Your Wine"
 msgstr ""
 
-#: cellar/admin.py:11 cellar/admin.py:28 cellar/admin.py:37
+#: app/cellar/admin.py:11 app/cellar/admin.py:28 app/cellar/admin.py:38
+#: app/cellar/admin.py:48
 msgid "Infos"
 msgstr ""
 
-#: cellar/models.py:68 wine/templates/base.html:24 wine/templates/base.html:40
-#: wine/templates/registration/login.html:4
-#: wine/templates/registration/logout.html:4
+#: app/cellar/models.py:104 app/templates/base.html:25
+#: app/templates/base.html:41 app/templates/index.html:103
+#: app/templates/registration/login.html:4
+#: app/templates/registration/logout.html:4
 msgid "My Cellar"
 msgstr ""
 
-#: wine/admin.py:15
-msgid "Bottle"
+#: app/cellar/templates/edit_bottle.html:6
+msgid "Bottle Parameters"
 msgstr ""
 
-#: wine/admin.py:18
-msgid "Purchase"
+#: app/cellar/templates/edit_bottle.html:8
+msgid "Modifying Bottle "
 msgstr ""
 
-#: wine/admin.py:21
-msgid "Consumption"
+#: app/cellar/templates/edit_bottle.html:14
+#: app/cellar/templates/edit_cell.html:14
+#: app/cellar/templates/edit_cellar.html:14
+#: app/cellar/templates/edit_zone.html:14
+#: app/templates/registration/password_change_form.html:9
+#: app/templates/registration/password_reset_confirm.html:12
+#: app/templates/registration/password_reset_form.html:9
+#: app/templates/registration/registration_form.html:9
+#: app/wine/templates/edit_wine.html:14 app/wine/templates/edit_winery.html:14
+msgid "Submit"
 msgstr ""
 
-#: wine/models.py:23
-msgid "address"
+#: app/cellar/templates/edit_cell.html:6
+msgid "Cell Parameters"
 msgstr ""
 
-#: wine/models.py:24
-msgid "address cont'd"
+#: app/cellar/templates/edit_cell.html:8
+msgid "Modifying Cellar Cell "
 msgstr ""
 
-#: wine/models.py:25
-msgid "city"
+#: app/cellar/templates/edit_cellar.html:6
+msgid "Cellar Parameters"
 msgstr ""
 
-#: wine/models.py:26
-msgid "zip code"
+#: app/cellar/templates/edit_cellar.html:8
+msgid "Modifying Cellar "
 msgstr ""
 
-#: wine/models.py:35
-msgid "Red"
+#: app/cellar/templates/edit_zone.html:6
+msgid "Cellar Zone Parameters"
 msgstr ""
 
-#: wine/models.py:36
-msgid "White"
+#: app/cellar/templates/edit_zone.html:8
+msgid "Modifying Cellar Zone "
 msgstr ""
 
-#: wine/models.py:37
-msgid "Rosé"
+#: app/cellar/templates/list_bottles.html:7
+msgid "Your Bottles"
 msgstr ""
 
-#: wine/models.py:38
-msgid "Orange"
+#: app/cellar/templates/list_bottles.html:38
+msgid "You didn't have any bottle yet."
 msgstr ""
 
-#: wine/models.py:39
-msgid "Sparkling"
+#: app/cellar/templates/list_cellars.html:7
+msgid "Your Cellars"
 msgstr ""
 
-#: wine/models.py:40
-msgid "Fortified"
+#: app/cellar/templates/list_cellars.html:39
+msgid "You didn't have any cellar yet."
 msgstr ""
 
-#: wine/models.py:41
-msgid "Dessert"
+#: app/cellar/templates/list_cells.html:7
+msgid "Your Cells"
 msgstr ""
 
-#: wine/models.py:74
-msgid "In Cellar?"
+#: app/cellar/templates/list_cells.html:38
+msgid "You didn't have any cell yet."
 msgstr ""
 
-#: wine/models.py:105
-msgid "wineries"
+#: app/cellar/templates/list_zones.html:7
+msgid "Your Zones"
 msgstr ""
 
-#: wine/templates/base.html:44
-msgid "Home"
+#: app/cellar/templates/list_zones.html:40
+msgid "You didn't have any zone yet."
 msgstr ""
 
-#: wine/templates/base.html:49 wine/templates/base.html:55
-msgid "Billing"
+#: app/templates/base.html:36
+msgid "Toggle navigation"
 msgstr ""
 
-#: wine/templates/base.html:52
-msgid "Customers"
+#: app/templates/base.html:48
+msgid "My Wines"
 msgstr ""
 
-#: wine/templates/base.html:53
-msgid "Projects"
+#: app/templates/base.html:51
+msgid "My Bottles"
 msgstr ""
 
-#: wine/templates/base.html:56
-msgid "Do Billing"
+#: app/templates/base.html:53 app/templates/base.html:81
+msgid "Manage Wines"
 msgstr ""
 
-#: wine/templates/base.html:61
+#: app/templates/base.html:54
+msgid "Add Bottle"
+msgstr ""
+
+#: app/templates/base.html:59
+msgid "My Cellars"
+msgstr ""
+
+#: app/templates/base.html:62
+msgid "Cellars"
+msgstr ""
+
+#: app/templates/base.html:63
+msgid "Zones"
+msgstr ""
+
+#: app/templates/base.html:64
+msgid "Cells"
+msgstr ""
+
+#: app/templates/base.html:66
+msgid "Manage Cellars"
+msgstr ""
+
+#: app/templates/base.html:67
+msgid "Add Cellar"
+msgstr ""
+
+#: app/templates/base.html:68
+msgid "Add Zone"
+msgstr ""
+
+#: app/templates/base.html:69
+msgid "Add Cell"
+msgstr ""
+
+#: app/templates/base.html:74 app/wine/templates/list_wines.html:7
+msgid "Wine Database"
+msgstr ""
+
+#: app/templates/base.html:77
+msgid "Wines"
+msgstr ""
+
+#: app/templates/base.html:78
+msgid "Wineries"
+msgstr ""
+
+#: app/templates/base.html:79
+msgid "Stores"
+msgstr ""
+
+#: app/templates/base.html:82
+msgid "Add Wine"
+msgstr ""
+
+#: app/templates/base.html:83
+msgid "Add Wineries"
+msgstr ""
+
+#: app/templates/base.html:84
+msgid "Add Store"
+msgstr ""
+
+#: app/templates/base.html:88
 msgid "Admin Zone"
 msgstr ""
 
-#: wine/templates/base.html:63 wine/templates/registration/logout.html:4
+#: app/templates/base.html:90 app/templates/registration/logout.html:4
 msgid "Log out"
 msgstr ""
 
-#: wine/templates/base.html:65 wine/templates/registration/login.html:4
-#: wine/templates/registration/login.html:19
-#: wine/templates/registration/password_reset_complete.html:8
+#: app/templates/base.html:92 app/templates/registration/login.html:4
+#: app/templates/registration/login.html:19
+#: app/templates/registration/password_reset_complete.html:8
 msgid "Log in"
 msgstr ""
 
-#: wine/templates/registration/activate.html:6
+#: app/templates/index.html:38
+msgid "Usage"
+msgstr ""
+
+#: app/templates/index.html:58
+msgid "Bottles"
+msgstr ""
+
+#: app/templates/index.html:64 app/templates/index.html:67
+#: app/templates/index.html:68
+msgid "Wine"
+msgstr ""
+
+#: app/templates/index.html:65
+msgid "Year"
+msgstr ""
+
+#: app/templates/index.html:66
+msgid "Date purchased"
+msgstr ""
+
+#: app/templates/index.html:93
+msgid "Welcome"
+msgstr ""
+
+#: app/templates/index.html:94
+msgid "It seems that you don't have any Cellars yet ..."
+msgstr ""
+
+#: app/templates/index.html:95
+msgid "Let's create your first one !"
+msgstr ""
+
+#: app/templates/index.html:116
+msgid "Sign up today"
+msgstr ""
+
+#: app/templates/index.html:117
+msgid "Login"
+msgstr ""
+
+#: app/templates/registration/activate.html:6
 msgid "Account activation failed"
 msgstr ""
 
-#: wine/templates/registration/activation_complete.html:5
+#: app/templates/registration/activation_complete.html:5
 msgid "Your account is now activated."
 msgstr ""
 
-#: wine/templates/registration/activation_email.txt:2
+#: app/templates/registration/activation_email.txt:2
 msgid "Activate account at"
 msgstr ""
 
-#: wine/templates/registration/activation_email.txt:6
+#: app/templates/registration/activation_email.txt:6
 #, python-format
 msgid "Link is valid for %(expiration_days)s days."
 msgstr ""
 
-#: wine/templates/registration/activation_email_subject.txt:1
+#: app/templates/registration/activation_email_subject.txt:1
 msgid "Account activation on"
 msgstr ""
 
-#: wine/templates/registration/login.html:10
-#: wine/templates/registration/login.html:11
+#: app/templates/registration/login.html:10
+#: app/templates/registration/login.html:11
 msgid "Username"
 msgstr ""
 
-#: wine/templates/registration/login.html:12
-#: wine/templates/registration/login.html:13
+#: app/templates/registration/login.html:12
+#: app/templates/registration/login.html:13
 msgid "Password"
 msgstr ""
 
-#: wine/templates/registration/login.html:16
+#: app/templates/registration/login.html:16
 msgid "Se souvenir de moi"
 msgstr "Remember me"
 
-#: wine/templates/registration/login.html:22
-msgid "Forgot password"
-msgstr ""
-
-#: wine/templates/registration/login.html:22
-msgid "Reset it"
-msgstr ""
-
-#: wine/templates/registration/login.html:23
-msgid "Not member"
-msgstr ""
-
-#: wine/templates/registration/login.html:23
-msgid "Register"
-msgstr ""
-
-#: wine/templates/registration/logout.html:9
+#: app/templates/registration/logout.html:9
 msgid "Logged out"
 msgstr ""
 
-#: wine/templates/registration/logout.html:12
+#: app/templates/registration/logout.html:12
 msgid "Log in again"
 msgstr ""
 
-#: wine/templates/registration/password_change_done.html:5
+#: app/templates/registration/password_change_done.html:5
 msgid "Password changed"
 msgstr ""
 
-#: wine/templates/registration/password_change_form.html:9
-#: wine/templates/registration/password_reset_confirm.html:12
-#: wine/templates/registration/password_reset_form.html:9
-#: wine/templates/registration/registration_form.html:9
-msgid "Submit"
-msgstr ""
-
-#: wine/templates/registration/password_reset_complete.html:6
+#: app/templates/registration/password_reset_complete.html:6
 msgid "Password reset successfully"
 msgstr ""
 
-#: wine/templates/registration/password_reset_confirm.html:17
+#: app/templates/registration/password_reset_confirm.html:17
 msgid "Password reset failed"
 msgstr ""
 
-#: wine/templates/registration/password_reset_done.html:5
+#: app/templates/registration/password_reset_done.html:5
 msgid "Email with password reset instructions has been sent."
 msgstr ""
 
-#: wine/templates/registration/password_reset_email.html:2
+#: app/templates/registration/password_reset_email.html:2
 #, python-format
 msgid "Reset password at %(site_name)s"
 msgstr ""
 
-#: wine/templates/registration/registration_closed.html:5
+#: app/templates/registration/registration_closed.html:5
 msgid "Registration is currently closed."
 msgstr ""
 
-#: wine/templates/registration/registration_complete.html:5
+#: app/templates/registration/registration_complete.html:5
 msgid "You are now registered. Activation email sent."
+msgstr ""
+
+#: app/wine/admin.py:17
+msgid "Bottle"
+msgstr ""
+
+#: app/wine/models.py:23
+msgid "address"
+msgstr ""
+
+#: app/wine/models.py:24
+msgid "address cont'd"
+msgstr ""
+
+#: app/wine/models.py:25
+msgid "city"
+msgstr ""
+
+#: app/wine/models.py:26
+msgid "zip code"
+msgstr ""
+
+#: app/wine/models.py:38
+msgid "Red"
+msgstr ""
+
+#: app/wine/models.py:39
+msgid "White"
+msgstr ""
+
+#: app/wine/models.py:40
+msgid "Rosé"
+msgstr ""
+
+#: app/wine/models.py:41
+msgid "Orange"
+msgstr ""
+
+#: app/wine/models.py:42
+msgid "Sparkling"
+msgstr ""
+
+#: app/wine/models.py:43
+msgid "Fortified"
+msgstr ""
+
+#: app/wine/models.py:44
+msgid "Dessert"
+msgstr ""
+
+#: app/wine/models.py:99
+msgid "wineries"
+msgstr ""
+
+#: app/wine/templates/edit_wine.html:6
+msgid "Wine Parameters"
+msgstr ""
+
+#: app/wine/templates/edit_wine.html:8
+msgid "Modifying Wine "
+msgstr ""
+
+#: app/wine/templates/edit_winery.html:6
+msgid "Winery Parameters"
+msgstr ""
+
+#: app/wine/templates/edit_winery.html:8
+msgid "Modifying Winery "
+msgstr ""
+
+#: app/wine/templates/list_wineries.html:7
+msgid "Wineries Database"
+msgstr ""
+
+#: app/wine/templates/list_wineries.html:13
+msgid "Name"
+msgstr ""
+
+#: app/wine/templates/list_wineries.html:14
+msgid "Address"
+msgstr ""
+
+#: app/wine/templates/list_wineries.html:32
+#: app/wine/templates/list_wines.html:38
+msgid "There isn't any wine yet ..."
 msgstr ""
