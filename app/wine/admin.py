@@ -15,7 +15,7 @@ class WineAdmin(admin.ModelAdmin):
     list_display = ["__str__", "wine_type", ]
     fieldsets = (
         (_('Bottle'), {
-            'fields': ('bottle_text', 'wine_type', 'winery',),
+            'fields': ('bottle_text', 'wine_type', 'winery', 'image', 'etiquette', ),
             }),
         # (_('Purchase'), {
         #     'fields': ('date_purchased', 'price', 'store', 'importer'),

@@ -54,6 +54,8 @@ class Wine(models.Model):
     winery = models.ForeignKey('Winery')
     importer = models.CharField(blank=True, null=True, max_length=50)
     notes = models.TextField(blank=True, default="")
+    image = models.ImageField(upload_to = 'wine/', blank=True, null=True)
+    etiquette = models.ImageField(upload_to = 'wine/', blank=True, null=True)
 
     def __str__(self):
         return self.bottle_text

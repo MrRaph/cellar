@@ -6,7 +6,7 @@
   <h1>{% trans "Wine Parameters" %}</h1>
 
   <legend>{% trans "Modifying Wine " %}"{{ form.bottle_text.value }}"</legend>
-  <form role="form" method="post" action=".">
+  <form role="form" method="post" action="." enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|bootstrap }}
 

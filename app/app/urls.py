@@ -22,6 +22,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 # from wine.api import WineViewSet
 # from cellar.api import CellarViewSet, ZoneViewSet, CellViewSet
@@ -46,7 +48,7 @@ urlpatterns = [
     # url(r'^api/', include(router.urls)),
     # url(r'^api/token/', obtain_auth_token, name='api-token'),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = _("Cellar")
 admin.site.site_title = _("Cellar")

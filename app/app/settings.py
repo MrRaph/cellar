@@ -81,6 +81,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "django.template.context_processors.i18n",
+                "django.template.context_processors.static",
+                "django.template.context_processors.media",
             ],
         },
     },
@@ -173,3 +175,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

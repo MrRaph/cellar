@@ -12,7 +12,7 @@ class WineForm(forms.ModelForm):
     class Meta:
         model = Wine
 
-        fields = ['bottle_text', 'wine_type', 'winery', 'importer', 'notes', ]
+        fields = ['bottle_text', 'wine_type', 'winery', 'importer', 'notes', 'image', 'etiquette', ]
 
 class BarcodeForm(forms.ModelForm):
     class Meta:
