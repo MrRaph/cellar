@@ -20,7 +20,7 @@
       <tbody>
         {% for wine in wines %}
             <tr>
-              <td>{{ wine.bottle_text }}</a></td>
+              <td><a href="/wine/wines/{{ wine.id }}">{{ wine.bottle_text }}</a></td>
               <td>{{ wine.wine_type }}</a></td>
               <td><a href="/wine/wineries/{{ wine.winery.id }}">{{ wine.winery }}</a></td>
               <td>{{ wine.importer }}</td>

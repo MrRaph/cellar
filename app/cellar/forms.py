@@ -22,4 +22,4 @@ class CellForm(forms.ModelForm):
 class BottleForm(forms.ModelForm):
     class Meta:
         model = Bottle
-        fields = ['wine', 'cell', ]
+        fields = ['wine', 'cell', 'date_purchased', 'price', 'date_opened', 'date_finished', 'liked_it' ]

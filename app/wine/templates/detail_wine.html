@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  {% if wines %}
+    {% for wine in wines %}
+      <div class="row jumbotron" style="background-image: url({{ MEDIA_URL }}{{ wine.etiquette }}); background-repeat: no-repeat; background-size: contain; background-position: center right;">
+          <h1>
+            {{ wine.bottle_text }}
+            {% if user.is_superuser %}
+              <span><a href="/wine/wines/edit/{{ wine.id }}"><img width="16px" src="{% static 'icons/pencil.png' %}" /></a></span>
+            {% endif %}
+          </h1>
+          <p>{% trans "Winery" %} : {{ wine.winery.name }}</p>
+              <span>
+                <span><img width="16px" src="{% static 'icons/heart.png' %}" /></span>
+                <span>{{ liked.count }}</span>
+              </span>
+    </div>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>{% trans "Importer" %}</h2>
+            <p>{{ wine.importer|default:_("Not set") }}</p>
+        </div>
+        <div class="col-md-4">
+          <h2>{% trans "Notes" %}</h2>
+            <p>{{ wine.notes|default:_("Not set") }}</p>
+       </div>
+        <div class="col-md-4">
+          <h2>{% trans "Winery details" %}</h2>
+          <p>{{ wine.winery.address.address_1 }}</p>
+          <p>{{ wine.winery.address.address_2 }}</p>
+          <p>{{ wine.winery.address.zip_code }} - {{ wine.winery.address.city }}</p>
+          <p>{{ wine.winery.address.state.name }}</p>
+          <p><a href="{{ wine.winery.website }}" target="_blank">{% trans "Website" %}</a></p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details »</a></p> -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <strong>Haha !</strong> {% trans "There isn't any wine yet ..." %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -52,7 +52,8 @@ class Bottle(models.Model):
 
     year = models.IntegerField(default=date.today().year)
 
-    date_purchased = models.DateField(auto_now = True)
+    date_purchased = models.DateField(default=date.today())
+    date_added = models.DateField(auto_now = True)
     price = models.DecimalField(decimal_places=2, max_digits=4, blank=True,
                                 null=True)
     barcode = models.ForeignKey('wine.Barcode', blank=True, null=True)
@@ -62,7 +63,7 @@ class Bottle(models.Model):
     liked_it = models.NullBooleanField(blank=True, null=True)
 
     def __str__(self):
-        return self.wine.bottle_text
+        return _("Bottle of ") + str(self.wine.bottle_text)
 
 class Zone(models.Model):
     number = models.IntegerField(default=1)

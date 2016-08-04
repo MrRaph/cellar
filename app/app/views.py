@@ -22,7 +22,8 @@ def index(request):
         cellars = Cellar.objects.all().filter(user=request.user)
         zones = Zone.objects.all().filter(cellar__user=request.user)
         cells = Cell.objects.all().filter(zone__cellar__user=request.user)
+        bottles = Bottle.objects.all().filter(cell__zone__cellar__user=request.user)
 
-        return render(request, 'index.html', {'cellars': cellars, 'zones': zones, 'cells': cells})
+        return render(request, 'index.html', {'cellars': cellars, 'zones': zones, 'cells': cells, 'bottles': bottles})
     else:
         return render(request, 'index.html')

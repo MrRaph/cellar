@@ -17,6 +17,8 @@ from django.forms import inlineformset_factory
 from .models import Wine, Store, Barcode, Address, Grape, Winery
 from .forms import WineForm, StoreForm, BarcodeForm, AddressForm, AddressForm, GrapeForm, WineryForm
 
+from cellar.models import Bottle
+
 ## List Views
 
 def allWines(request):
@@ -31,7 +33,9 @@ def allWineries(request):
 
 def wineDetail(request, id):
     wines = Wine.objects.all().filter(id=id)
-    return render(request, 'list_wines.html', {'wines': wines})
+    # wineries = Winery.objects.all().filter()
+    liked = Bottle.objects.all().filter(wine__id=id, liked_it=True)
+    return render(request, 'detail_wine.html', {'wines': wines, 'liked': liked})
 
 def wineryDetail(request, id):
     wineries = Winery.objects.all().filter(id=id)
@@ -40,40 +44,46 @@ def wineryDetail(request, id):
 ## Edit Views
 
 def editWine(request, id=None):
-    # cellar = get_object_or_404(Cellar, id=id)
-
     try:
         wine = Wine.objects.get(id=id)
     except:
         wine = None
 
-    # winery = Winery.objects.all()
-    # WineFormSet = inlineformset_factory(Wine, Winery, )
-
-    form = WineForm(request.POST or None, instance=wine)
-    # form = WineFormSet(request.POST or None, instance=wine,)
+    form = WineForm(request.POST or  None, request.FILES or None, instance=wine)
     if form.is_valid():
-        form = form.save(commit=False)
-        form.save()
-        return HttpResponseRedirect('/wine/wines/' + str(form.id))
+        form = form.save()
+        if request.FILES.get('image'):
+            image = request.FILES.get('image', None)
+            form.image = image
+            form.save()
+        if request.FILES.get('etiquette'):
+            etiquette = request.FILES.get('etiquette', None)
+            form.etiquette = etiquette
+            form.save()
+        return HttpResponseRedirect('/wine/wines/')
     return render(request, 'edit_wine.html', {'form': form})
 
 
 def editWinery(request, id=None):
-    # cellar = get_object_or_404(Cellar, id=id)
-
     try:
         winery = Winery.objects.get(id=id)
+        try:
+            address = Address.objects.all().filter(id=winery.address.id)[0]
+        except:
+            address = None
     except:
         winery = None
+        address = None
 
-    # winery = Winery.objects.all()
-    # WineFormSet = inlineformset_factory(Winery, Wine, fields=('winery', ))
-
+    address_form = AddressForm(instance=address)
     form = WineryForm(request.POST or None, instance=winery)
-    # form = WineFormSet(request.POST or None, instance=winery,)
+    
+    if address_form.is_valid():
+        address = address_form.save(commit=False)
+        address.save()
     if form.is_valid():
         form = form.save(commit=False)
+        form.address = address
         form.save()
-        return HttpResponseRedirect('/wine/wineries/edit/' + str(form.id))
-    return render(request, 'edit_winery.html', {'form': form})
+        return HttpResponseRedirect('/wine/wineries/')
+    return render(request, 'edit_winery.html', {'form': form, 'address_form': address_form})

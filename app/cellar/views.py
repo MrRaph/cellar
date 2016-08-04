@@ -33,6 +33,7 @@ def myCells(request):
 def myBottles(request):
     bottles = Bottle.objects.all().filter(cell__zone__cellar__user=request.user) | Bottle.objects.all().filter(user=request.user)
     return render(request, 'list_bottles.html', {'bottles': bottles})
+    
 ## Detail Views
 
 def cellarDetail(request, id):
@@ -51,6 +52,29 @@ def bottleDetail(request, id):
     bottles = Bottle.objects.all().filter(user=request.user, id=id)
     return render(request, 'list_bottles.html', {'bottles': bottles})
 
+## Delete Views
+
+def cellarDelete(request, id):
+    cellars = Cellar.objects.all().filter(user=request.user, id=id).delete()
+    # return render(request, 'list_cellars.html', {'cellars': cellars})
+    return myCellars(request)
+
+def zoneDelete(request, id):
+    zones = Zone.objects.all().filter(cellar__user=request.user, id=id).delete()
+    # return render(request, 'list_zones.html', {'zones': zones})
+    return myZones(request)
+
+def cellDelete(request, id):
+    cells = Cell.objects.all().filter(zone__cellar__user=request.user, id=id).delete()
+    # return render(request, 'list_cells.html', {'cells': cells})
+    return myCells(request)
+
+def bottleDelete(request, id):
+    bottles = Bottle.objects.all().filter(user=request.user, id=id).delete()
+    # return render(request, 'list_bottles.html', {'bottles': bottles})
+    return myBottles(request)
+
+
 ## Edit Views
 
 def editCellar(request, id=None):
@@ -66,7 +90,7 @@ def editCellar(request, id=None):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/cellars/' + str(form.id))
+        return HttpResponseRedirect('/cellar/cellars/')
     return render(request, 'edit_cellar.html', {'form': form})
 
 def editZone(request, id=None):
@@ -82,7 +106,7 @@ def editZone(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/zones/' + str(form.id))
+        return HttpResponseRedirect('/cellar/zones/')
     return render(request, 'edit_zone.html', {'form': form})
 
 def editCell(request, id=None):
@@ -99,7 +123,7 @@ def editCell(request, id=None):
     if form.is_valid():
         form = form.save(commit=False)
         form.save()
-        return HttpResponseRedirect('/cellar/cells/' + str(form.id) )
+        return HttpResponseRedirect('/cellar/cells/')
     return render(request, 'edit_cell.html', {'form': form})
 
 def editBottle(request, id=None):
@@ -115,5 +139,5 @@ def editBottle(request, id=None):
         form = form.save(commit=False)
         form.user = request.user
         form.save()
-        return HttpResponseRedirect('/cellar/bottles/' + str(form.id))
+        return HttpResponseRedirect('/cellar/bottles/')
     return render(request, 'edit_bottle.html', {'form': form})

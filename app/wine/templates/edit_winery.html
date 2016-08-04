@@ -9,6 +9,7 @@
   <form role="form" method="post" action=".">
     {% csrf_token %}
     {{ form|bootstrap }}
+    {{ address_form|bootstrap }}
 
     <div class="form-group">
       <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>

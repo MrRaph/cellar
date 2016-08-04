@@ -28,4 +28,9 @@ urlpatterns = [
     url(r'^zones/edit/(?P<id>[0-9]+)/$', login_required(views.editZone), name='editZone'),
     url(r'^cells/edit/(?P<id>[0-9]+)/$', login_required(views.editCell), name='editCell'),
     url(r'^bottles/edit/(?P<id>[0-9]+)/$', login_required(views.editBottle), name='editBottle'),
+    # Delete Views
+    url(r'^cellars/delete/(?P<id>[0-9]+)/$', login_required(views.cellarDelete), name='cellarDelete'),
+    url(r'^zones/delete/(?P<id>[0-9]+)/$', login_required(views.zoneDelete), name='zoneDelete'),
+    url(r'^cells/delete/(?P<id>[0-9]+)/$', login_required(views.cellDelete), name='cellDelete'),
+    url(r'^bottles/delete/(?P<id>[0-9]+)/$', login_required(views.bottleDelete), name='bottleDelete'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
