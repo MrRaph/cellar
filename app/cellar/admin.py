@@ -43,9 +43,9 @@ class CellAdmin(admin.ModelAdmin):
 
 @admin.register(Bottle)
 class BottleAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "wine", "cell", "user", ]
+    list_display = ["__str__", "wine", "cell", "user", "liked_it" ]
     fieldsets = (
         (_('Infos'), {
-            'fields': ('wine', "cell", 'user',),
+            'fields': ('wine', "cell", 'user', 'liked_it'),
             }),
     )

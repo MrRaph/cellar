@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load bootstrap %}
+
+{% block title %}{% trans "My Cellar" %} - {% trans "Register" %}{% endblock %}
 
 {% block content %}
 <form method="post" action=".">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form|bootstrap }}
 
-  <input type="submit" value="{% trans 'Submit' %}" />
+  <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Register" %}</button>
 </form>
 {% endblock %}

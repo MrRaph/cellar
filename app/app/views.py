@@ -10,9 +10,6 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
-from django.forms import inlineformset_factory
-
-
 # Create your views here.
 from wine.models import Wine, Store, Barcode, Address, Grape, Winery
 from cellar.models import Cellar, Zone, Cell, Bottle

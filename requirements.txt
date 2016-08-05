@@ -9,6 +9,7 @@ django-countries
 django-registration-redux
 django-bootstrap-form
 Pillow
+djangoajax
 
 # Heroku things.
 gunicorn
