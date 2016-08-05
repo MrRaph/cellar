@@ -80,9 +80,9 @@ def editWinery(request, id=None):
         winery = None
         address = None
 
-    address_form = AddressForm(instance=address)
+    address_form = AddressForm(request.POST or None, instance=address)
     form = WineryForm(request.POST or None, instance=winery)
-
+    
     if address_form.is_valid():
         address = address_form.save(commit=False)
         address.save()
