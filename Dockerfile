@@ -1,3 +1,3 @@
 FROM django:onbuild
 
-#CMD "python app/manage.py runserver"
+VOLUME /usr/src/app/app/media

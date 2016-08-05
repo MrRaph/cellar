@@ -36,6 +36,28 @@ Run usual Django tasks :
 
 ## On Docker
 
+### Docker < 1.12 with docker-compose
+
+Here is the `docker-compose.yml` file I'm using :
+
+    version: '2'
+
+    services:
+      techan:
+        image: mrraph/my-cellar
+        #environment:       Uncomment is you want to use a MySQL database
+        #  - DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME
+        volumes:
+          - /data/cellar/media:/usr/src/app/app/media:rw
+        networks:
+          - web
+        restart: always
+    networks:
+      web:
+        external:
+          name: web
+
+
 ### Docker 1.12 with Services
 
 Here is the command I used to create my Service :
