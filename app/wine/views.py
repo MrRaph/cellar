@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .models import Wine, Store, Barcode, Address, Grape, Winery
@@ -21,28 +21,33 @@ from cellar.models import Bottle
 
 ## List Views
 
+@login_required
 def allWines(request):
     wines = Wine.objects.all()
     return render(request, 'list_wines.html', {'wines': wines})
 
+@login_required
 def allWineries(request):
     wineries = Winery.objects.all()
     return render(request, 'list_wineries.html', {'wineries': wineries})
 
 ## Detail Views
 
+@login_required
 def wineDetail(request, id):
     wines = Wine.objects.all().filter(id=id)
     # wineries = Winery.objects.all().filter()
     liked = Bottle.objects.all().filter(wine__id=id, liked_it=True)
     return render(request, 'detail_wine.html', {'wines': wines, 'liked': liked})
 
+@login_required
 def wineryDetail(request, id):
     wineries = Winery.objects.all().filter(id=id)
     return render(request, 'list_wineries.html', {'wineries': wineries})
 
 ## Edit Views
 
+@login_required
 def editWine(request, id=None):
     try:
         wine = Wine.objects.get(id=id)
@@ -63,7 +68,7 @@ def editWine(request, id=None):
         return HttpResponseRedirect('/wine/wines/')
     return render(request, 'edit_wine.html', {'form': form})
 
-
+@login_required
 def editWinery(request, id=None):
     try:
         winery = Winery.objects.get(id=id)
@@ -77,7 +82,7 @@ def editWinery(request, id=None):
 
     address_form = AddressForm(instance=address)
     form = WineryForm(request.POST or None, instance=winery)
-    
+
     if address_form.is_valid():
         address = address_form.save(commit=False)
         address.save()

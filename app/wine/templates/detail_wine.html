@@ -3,6 +3,42 @@
 {% load i18n %}
 
 {% block content %}
+<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+{% for wine in wines %}
+  <script type="text/javascript">
+      function getLikes(){
+        ajaxGet('/cellar/bottles/ajax/likes/{{ wine.id }}/', function(content){
+          //onSuccess
+          $("#bottle-likes").text(content);
+        });
+      }
+
+      function switch_like(){
+        ajaxGet('/cellar/bottles/ajax/liked_it/{{ wine.id }}/', function(content){
+            //onSuccess
+            if(content == 'false') {
+              $("#bottle-do_like").html('<a href="#" id="it-want-to-like-it"><img width="16px" src="{% static 'icons/heart_add.png' %}" /></a>');
+            } else if (content == 'true') {
+              $("#bottle-do_like").html('<a href="#" id="it-want-to-like-it"><img width="16px" src="{% static 'icons/heart_remove.png' %}" /></a>');
+            }
+
+            $("#it-want-to-like-it").click(function(event) {
+              event.preventDefault();
+              // alert('Prout')
+              ajaxGet('/cellar/bottles/ajax/switch_like/{{ wine.id }}/', function(content){
+                  //onSuccess
+                  getLikes();
+                  switch_like();
+              })
+            });
+        });
+      }
+
+      getLikes();
+      switch_like();
+  </script>
+{% endfor %}
+
 <div class="row">
   {% if wines %}
     {% for wine in wines %}
@@ -15,8 +51,9 @@
           </h1>
           <p>{% trans "Winery" %} : {{ wine.winery.name }}</p>
               <span>
-                <span><img width="16px" src="{% static 'icons/heart.png' %}" /></span>
-                <span>{{ liked.count }}</span>
+                <span id="bottle-do_like"><img width="16px" src="{% static 'icons/heart.png' %}" /></span>
+                <span id="bottle-likes"></span>
+                <span ></span>
               </span>
     </div>
     <div class="container">

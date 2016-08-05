@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 
-from . import views
+from . import views, ajax
 
 app_name = 'cellar'
 urlpatterns = [
@@ -33,4 +33,9 @@ urlpatterns = [
     url(r'^zones/delete/(?P<id>[0-9]+)/$', login_required(views.zoneDelete), name='zoneDelete'),
     url(r'^cells/delete/(?P<id>[0-9]+)/$', login_required(views.cellDelete), name='cellDelete'),
     url(r'^bottles/delete/(?P<id>[0-9]+)/$', login_required(views.bottleDelete), name='bottleDelete'),
+
+    ### AJAX ###
+    url(r'^bottles/ajax/likes/(?P<id>[0-9]+)/$', login_required(ajax.get_bottle_likes), name='get_bottle_likes'),
+    url(r'^bottles/ajax/liked_it/(?P<id>[0-9]+)/$', login_required(ajax.did_user_liked_bottle), name='did_user_liked_bottle'),
+    url(r'^bottles/ajax/switch_like/(?P<id>[0-9]+)/$', login_required(ajax.switch_like), name='switch_like'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
