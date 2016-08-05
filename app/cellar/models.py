@@ -5,6 +5,7 @@ import string
 from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import date
+from django.utils import timezone
 
 from wine.models import Wine, Barcode, Store
 
@@ -52,7 +53,7 @@ class Bottle(models.Model):
 
     year = models.IntegerField(default=date.today().year)
 
-    date_purchased = models.DateField(default=date.today())
+    date_purchased = models.DateField(default=timezone.now)
     date_added = models.DateField(auto_now = True)
     price = models.DecimalField(decimal_places=2, max_digits=4, blank=True,
                                 null=True)
