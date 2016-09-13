@@ -47,6 +47,12 @@ Here is the `docker-compose.yml` file I'm using :
         image: mrraph/my-cellar
         #environment:       Uncomment is you want to use a MySQL database
         #  - DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME
+        #  - EMAIL_HOST=
+        #  - EMAIL_PORT=
+        #  - EMAIL_HOST_USER=
+        #  - EMAIL_HOST_PASSWORD=
+        #  - EMAIL_USE_SSL=[False/True]
+        #  - EMAIL_USE_TLS=[False/True]
         volumes:
           - /data/cellar/media:/usr/src/app/app/media:rw
         networks:
@@ -79,7 +85,6 @@ If you want to use MySQL, add the following line to the `docker service create` 
 
 
     --env DATABASE_URL=mysql://MYSQL_USER_NAME:MYSQL_USER_PASS@MYSQL_HOST:MYSQL_PORT/DB_NAME \
-
 
 Then, run the following commands after the service starts for the first time.
 

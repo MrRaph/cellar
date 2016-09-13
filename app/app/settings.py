@@ -109,6 +109,27 @@ if "DATABASE_URL" in os.environ and "test" not in sys.argv:
     DATABASES['default'] = dj_database_url.config()
     DATABASE_OPTIONS = {"init_command": "SET foreign_key_checks = 0;"}
 
+## Mail Settings
+
+if "EMAIL_HOST" in os.environ and "test" not in sys.argv:
+    EMAIL_HOST = os.environ['EMAIL_HOST']
+
+if "EMAIL_PORT" in os.environ and "test" not in sys.argv:
+    EMAIL_PORT = os.environ['EMAIL_PORT']
+
+if "EMAIL_HOST_USER" in os.environ and "test" not in sys.argv:
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+
+if "EMAIL_HOST_PASSWORD" in os.environ and "test" not in sys.argv:
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+
+if "EMAIL_USE_SSL" in os.environ and "test" not in sys.argv:
+    EMAIL_USE_SSL = os.environ['EMAIL_USE_SSL']
+
+if "EMAIL_USE_TLS" in os.environ and "test" not in sys.argv:
+    EMAIL_USE_TLS = os.environ['EMAIL_USE_TLS']
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
